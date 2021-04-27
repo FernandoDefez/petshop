@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**
+ * These are the app routes those that the user is going to see
+ */
 
 Route::get('/', function () {
-    return view('home');
-});
+    return view('home', [
+        'selected_pet' => '',
+        'selected_category' => '',
+        'pets' => \App\Models\Pet::all(),
+        'categories' => \App\Models\Category::all(),
+        'products' => \App\Models\Product::all()
+    ]);
+})->name('home');
+
+
+Route::get('products/{pet}/{category}', [HomeController::class, 'index'])->name('products');
+
+Route::get('product/{product}', [HomeController::class, 'show'])->name('product');
+
 
 
 require __DIR__ . '/admin.php';

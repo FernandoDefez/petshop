@@ -16,5 +16,13 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(1)->create();
 
         \App\Models\Admin::factory(1)->create();
+
+        \App\Models\Pet::factory(2)
+            ->has(
+                \App\Models\Category::factory()->count(2)
+                    ->has(
+                        \App\Models\Product::factory()->count(2)
+                    )
+            )->create();
     }
 }

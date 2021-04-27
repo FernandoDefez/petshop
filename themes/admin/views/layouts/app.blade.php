@@ -18,23 +18,24 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css', 'themes/admin') }}" rel="stylesheet">
+    <style>
+        .active-menu{
+            width: 0% !important;
+            padding: 0 !important;
+        }
+    
+        #menu{
+            width: 230px;
+            transition: width 0.6s ease-in-out;
+        }
+    </style>
 </head>
-<body>
-    <div id="app">
-        <nav class="bg-white shadow-sm navbar navbar-expand-md navbar-light">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Admin
+<body style="height: 100vh; overflow:hidden;">
+        <nav class="bg-dark navbar navbar-expand-md navbar-light m-0" style="height: 11vh">
+            <div class="container col-12 px-2">
+                <a class="navbar-brand text-white font-weight-bold title" href="{{ route('admin.home') }}">
+                    {{ __('Petshop Admin')}}
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="mr-auto navbar-nav">
-
-                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="ml-auto navbar-nav">
@@ -42,23 +43,17 @@
                         @guest('admin')
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('admin.login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::guard('admin')->user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('admin.logout') }}"
+                                <div class="dropdown-menu position-absolute dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item text-danger" href="{{ route('admin.logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -71,13 +66,23 @@
                             </li>
                         @endguest
                     </ul>
-                </div>
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="m-0 d-flex " style="height: 89vh;">
             @yield('content')
         </main>
-    </div>
+        <script>
+            const menu = document.getElementById('menu');
+            const menuButton = document.getElementById('menu-button');
+            menuButton.addEventListener("click", activeMenu);
+    
+            function activeMenu() {
+                menu.classList.toggle('active-menu');
+                console.log(menu)
+            }
+        </script>
 </body>
 </html>
+
+
