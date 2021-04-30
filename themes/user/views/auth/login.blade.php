@@ -7,14 +7,14 @@
     <title>{{ __('Petshop') }}</title>
 
     <!-- Scripts -->
-    <script src="/themes/user/js/app.js" defer></script>
+    <script src="{{url('themes/user/js/app.js')}}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="/themes/user/css/app.css" rel="stylesheet">
+    <link href="{{url('themes/user/css/app.css')}}" rel="stylesheet">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -32,7 +32,7 @@
             font-size: 21px;
         }
 
-        
+
         .dark{
             background: #161C24 !important;
         }
@@ -71,7 +71,7 @@
         <div class="header position-absolute dark col-12 px-4 py-3" style="display: none">
             <div class="mb-0 d-flex justify-content-between align-items-center">
                 <a class="text-white navbar-brand font-weight-bold title" href="{{@url('/')}}">
-                    {{ __('Petshop') }}    
+                    {{ __('Petshop') }}
                 </a>
                 <div class="d-flex align-items-center">
                 @guest
@@ -150,7 +150,7 @@
                                 @csrf
                                 <div class="col-md-12 p-0 mb-4">
                                     <label for="email" class="form-label">{{ __('E-Mail Address') }}</label>
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" 
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"
                                         placeholder="E-mail Address" autocomplete="email" aria-describedby="validateEmail" required autofocus>
                                     @error('email')
                                     <span class="invalid-feedback pt-2 mb-0" role="alert">
@@ -158,10 +158,10 @@
                                     </span>
                                     @enderror
                                 </div>
-                                
+
                                 <div class="col-md-12 p-0 mb-4">
                                     <label for="password" class="form-label">{{ __('Password') }}</label>
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" 
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"
                                         placeholder="Password" aria-describedby="validatePassword" required>
                                         @error('password')
                                         <span class="invalid-feedback pt-2 mb-0" role="alert">
@@ -174,7 +174,7 @@
                                     <div class="col-md-4 p-0">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-    
+
                                             <label class="form-check-label" for="remember">
                                                 {{ __('Remember Me') }}
                                             </label>
@@ -194,7 +194,7 @@
                                 </div>
                                 <br>
                                 <div class="col-12 p-0">
-                                    <p class="col-12 p-0 text-center m-0"> Don't have an account? 
+                                    <p class="col-12 p-0 text-center m-0"> Don't have an account?
                                         <a href="{{ route('register') }}" class="p-0">{{ __('Register') }}</a>
                                     </p>
                                 </div>

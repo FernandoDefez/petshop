@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -30,7 +30,7 @@
         .title{
             font-size: 24px !important;
           }
-        
+
           .dark{
                background: #212529 !important;
           }
@@ -61,14 +61,14 @@
           }
     </style>
     @yield('style')
-    @livewireStyles()
+    @livewireStyles
 </head>
 <body style="overflow-x: hidden" class="bg-white">
     <header class="dark">
         <nav class="navbar navbar-expand-lg navbar-dark dark m-auto px-1" style="width: 95%; height: auto">
-            <div class="d-flex col-12 justify-content-between px-2">               
+            <div class="d-flex col-12 justify-content-between px-2">
                 @guest
-               
+
                 @else
                 <div class="">
                     <ul class="navbar-nav mr-auto">
@@ -95,7 +95,7 @@
                         </li>
                     </ul>
                 </div>
-                @endguest     
+                @endguest
 
                 <a class="navbar-brand text-center title" href="{{ route('home') }}" style="font-size: 22px; font-weight: 900;">{{ __('Petshop')}}</a>
 
@@ -140,7 +140,7 @@
             <div class="light rounded p-3" style="margin-top: 2vh; height: 200px">
                 <h6 class="font-weight-bold py-1"> Welcome </h6>
                 <p>
-                    Hello, 
+                    Hello,
                     @guest
                     {{ __('dear customer.') }}
                     @else
@@ -221,5 +221,5 @@
 </body>
     <!-- Scripts -->
     @yield('scripts')
-    @livewireScripts()
+    @livewireScripts
 </html>
