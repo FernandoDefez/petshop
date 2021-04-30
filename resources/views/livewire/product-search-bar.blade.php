@@ -8,15 +8,15 @@
                         <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="search-dropdown" style="display: block; min-width:100%">
                             <h6 class="dropdown-header text-dark font-weight-bold">Search Results</h6>
                             @foreach($products as $product)
-                            <a class="dropdown-item text-secondary" href="/product/{{$product['slug']}}">
+                            <a class="dropdown-item text-secondary" href="{{route('product', ['product' => $product['slug']])}}">
                                 {{ $product['product'] }}
                             </a>
                             @endforeach
-                        </div>                
-                    @else 
+                        </div>
+                    @else
                     <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="search-dropdown" style="display: block; min-width:100%">
                         <h6 class="dropdown-header text-dark font-weight-bold">No Results</h6>
-                    </div>         
+                    </div>
                     @endif
                 @endif
         </div>

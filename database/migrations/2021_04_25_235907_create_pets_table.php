@@ -16,6 +16,7 @@ class CreatePetsTable extends Migration
         Schema::create('pets', function (Blueprint $table) {
             $table->id();
             $table->string("pet_name", 15)->unique();
+            $table->string('img_path');
             $table->timestamps();
         });
     }

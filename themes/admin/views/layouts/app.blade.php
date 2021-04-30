@@ -7,31 +7,44 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ __('Petshop Admin') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js', 'themes/admin') }}" defer></script>
+    <script src="{{ url('themes/user/js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ mix('css/app.css', 'themes/admin') }}" rel="stylesheet">
+    <link href="{{ url('themes/user/css/app.css') }}" rel="stylesheet">
     <style>
         .active-menu{
             width: 0% !important;
             padding: 0 !important;
         }
-    
+
         #menu{
             width: 230px;
             transition: width 0.6s ease-in-out;
         }
+
+        .title{
+            font-size: 21px !important;
+        }
+
+        .dark{
+            background: #212529 !important;
+        }
+
+        .light{
+            background: #f5f5f5;
+        }
     </style>
+    @livewireStyles
 </head>
 <body style="height: 100vh; overflow:hidden;">
-        <nav class="bg-dark navbar navbar-expand-md navbar-light m-0" style="height: 11vh">
+        <nav class="dark navbar navbar-expand-md navbar-light m-0" style="height: 11vh">
             <div class="container col-12 px-2">
                 <a class="navbar-brand text-white font-weight-bold title" href="{{ route('admin.home') }}">
                     {{ __('Petshop Admin')}}
@@ -76,12 +89,14 @@
             const menu = document.getElementById('menu');
             const menuButton = document.getElementById('menu-button');
             menuButton.addEventListener("click", activeMenu);
-    
+
             function activeMenu() {
                 menu.classList.toggle('active-menu');
                 console.log(menu)
             }
         </script>
+
+        @livewireScripts
 </body>
 </html>
 

@@ -21,8 +21,10 @@ class PetFactory extends Factory
      */
     public function definition()
     {
+        //true, 'public/storage/pets/image1', but if false just 'image1'
         return [
-            'pet_name' => $this->faker->word(15)
+            'pet_name' => $this->faker->word(15),
+            'img_path' => $this->faker->image(storage_path().'\app\public\pets',1000,600, null, false)
         ];
     }
 }

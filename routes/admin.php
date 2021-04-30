@@ -16,7 +16,7 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 Route::prefix('admin')->middleware('theme:admin')->name('admin.')->group(function () {
 
-     Route::view('/home', 'home')->middleware('auth:admin')->name('home');
+     Route::view('/', 'home')->middleware('auth:admin')->name('home');
 
      Route::get('/login', function () {
           return view('auth.login');
@@ -32,4 +32,8 @@ Route::prefix('admin')->middleware('theme:admin')->name('admin.')->group(functio
      Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
           ->middleware('auth:admin')
           ->name('logout');
+
+        Route::get('/pets', function (){
+            return view('pets-crud', ['pets' => \App\Models\Pet::all()]);
+        })->middleware('auth:admin')->name('pets');
 });
