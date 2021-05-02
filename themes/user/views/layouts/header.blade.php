@@ -166,28 +166,19 @@
                 <div class="splide rounded position-relative bg-success overflow-hidden" id="splide" style="height: 100%">
                     <div class="splide__track">
                         <ul class="splide__list">
+                            @foreach ($pets as $pet)
                             <li class="splide__slide" style="height: 200px;">
                                 <div class="rounded position-relative" style="height: 200px;">
                                     <div class="bg-dark position-absolute" style="width: 100%; height: 100%;">
-                                        <img src="https://images.pexels.com/photos/2253275/pexels-photo-2253275.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                                        <img src="{{asset('storage/pets/'.$pet->img)}}"
                                             alt="" style="width: 100%; height: 100%; object-fit: cover; background-color:rgba(0,0,0,0.7); opacity: 0.5;">
                                     </div>
-                                    <div class="p-5 py-4 position-absolute" style="z-index: 10; bottom: 0; width: 100%;">
-                                        <h5 class="fw-bold text-white">Dog</h5>
+                                    <div class="px-5 py-4 position-absolute" style="z-index: 10; bottom: 0; width: 100%;">
+                                        <h5 class="fw-bold text-white">{{ $pet->pet_name  }}</h5>
                                     </div>
                                 </div>
                             </li>
-                            <li class="splide__slide" style="height: 200px;">
-                                <div class="rounded position-relative" style="height: 200px;">
-                                    <div class="bg-dark position-absolute" style="width: 100%; height: 100%;">
-                                        <img src="https://images.pexels.com/photos/1472999/pexels-photo-1472999.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                                             alt="" style="width: 100%; height: 100%; object-fit: cover; background-color:rgba(0,0,0,0.8); opacity: 0.5;">
-                                    </div>
-                                    <div class="p-5 py-4 position-absolute" style="z-index: 10; bottom: 0; width: 100%;">
-                                        <h5 class="fw-bold text-white">Cat</h5>
-                                    </div>
-                                </div>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

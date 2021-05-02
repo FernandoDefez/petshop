@@ -34,6 +34,15 @@ Route::prefix('admin')->middleware('theme:admin')->name('admin.')->group(functio
           ->name('logout');
 
         Route::get('/pets', function (){
-            return view('pets-crud', ['pets' => \App\Models\Pet::all()]);
+            return view('pets');
         })->middleware('auth:admin')->name('pets');
+
+        Route::get('/categories', function (){
+            return view('categories');
+        })->middleware('auth:admin')->name('categories');
+
+        Route::get('/products', function (){
+            return view('products');
+        })->middleware('auth:admin')->name('products');
+
 });

@@ -10,14 +10,15 @@
     <title>{{ __('Petshop Admin') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ url('themes/user/js/app.js') }}" defer></script>
+    <script src="{{ asset('themes/admin/js/app.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ url('themes/user/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('themes/admin/css/app.css') }}" rel="stylesheet">
     <style>
         .active-menu{
             width: 0% !important;
@@ -85,6 +86,7 @@
         <main class="m-0 d-flex " style="height: 89vh;">
             @yield('content')
         </main>
+
         <script>
             const menu = document.getElementById('menu');
             const menuButton = document.getElementById('menu-button');
@@ -95,8 +97,8 @@
                 console.log(menu)
             }
         </script>
-
         @livewireScripts
+        @yield('myscripts')
 </body>
 </html>
 

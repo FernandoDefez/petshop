@@ -17,8 +17,13 @@
                 @foreach($pets as $pet)
                     <tr>
                         <th class="align-middle">{{__($pet->id)}}</th>
-                        <td class="p-3" style="min-width: 160px; max-width: 160px; height: 110px">
-                            <img src="{{asset('storage/pets/'.$pet->img_path)}}" class="rounded" style="width: 100%; height: 100%">
+                        <td class="p-3" style="min-width: 160px; max-width: 160px; height: 120px">
+                            <img
+                                loading="lazy"
+                                decoding="async"
+                                src="{{asset('storage/pets/'.$pet->img)}}"
+                                class="rounded-sm"
+                                style="width: 100%; height: 100%; object-fit: cover">
                         </td>
                         <td class="align-middle">{{__($pet->pet_name)}}</td>
                         <td class="align-middle">{{ $pet->created_at }}</td>
@@ -27,7 +32,9 @@
                             <button class="btn btn-danger btn-sm">Remove</button>
                         </td>
                         <td class="align-middle">
-                            <button class="btn btn-primary btn-sm">Update</button>
+                            <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#editModal">
+                                Edit
+                            </button>
                         </td>
                     </tr>
                 @endforeach

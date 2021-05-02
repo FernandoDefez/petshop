@@ -28,11 +28,9 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-
 Route::get('products/{pet}/{category}', [HomeController::class, 'index'])->name('products');
 
 Route::get('product/{product}', [HomeController::class, 'show'])->name('product');
-
 
 
 require __DIR__ . '/admin.php';

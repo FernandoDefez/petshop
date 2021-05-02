@@ -93,46 +93,28 @@
                     <div class="splide position-relative overflow-hidden" id="splide" style="height: 100vh">
                         <div class="splide__track">
                             <ul class="splide__list">
-                                <li class="splide__slide" style="height: 100vh;">
-                                    <div class="rounded position-relative" style="height: 100vh">
-                                        <div class="bg-dark position-absolute" style="width: 100%; height: 100vh;">
-                                            <img src="https://images.pexels.com/photos/2253275/pexels-photo-2253275.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                                                 alt="" style="width: 100%; height: 100vh; object-fit: cover; background-color:rgba(0,0,0,0.7); opacity: 0.5;">
+                                @foreach ($pets as $pet)
+                                    <li class="splide__slide" style="height: 100vh;">
+                                        <div class="rounded position-relative" style="height: 100vh">
+                                            <div class="bg-dark position-absolute" style="width: 100%; height: 100vh;">
+                                                <img src="{{asset('storage/pets/'.$pet->img)}}"
+                                                     alt="" style="width: 100%; height: 100vh; object-fit: cover; background-color:rgba(0,0,0,0.7); opacity: 0.5;">
+                                            </div>
+                                            <div class="px-5 py-4 position-absolute" style="z-index: 10; top: 0; width: 100%;">
+                                                <h2 class="mb-0"><a class="text-white navbar-brand font-weight-bolder title" href="{{@url('/')}}">Petshop</a></h2>
+                                            </div>
+                                            <div class="px-5 py-4 position-absolute" style="z-index: 10; bottom: 0; width: 100%;">
+                                                <h5 class="text-white">{{$pet->pet_name}}</h5>
+                                            </div>
+                                            <div class="px-5 nav-item py-4 position-absolute" style="z-index: 10; bottom: 0; right: 0;">
+                                                <a href="https://www.pexels.com/es-es/@wildlittlethingsphoto" class="text-secondary nav-link"
+                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="Photographer">
+                                                    Helena Lopes
+                                                </a>
+                                            </div>
                                         </div>
-                                        <div class="px-5 py-4 position-absolute" style="z-index: 10; top: 0; width: 100%;">
-                                            <h2 class="mb-0"><a class="text-white navbar-brand font-weight-bolder title" href="{{@url('/')}}">Petshop</a></h2>
-                                        </div>
-                                        <div class="px-5 py-4 position-absolute" style="z-index: 10; bottom: 0; width: 100%;">
-                                            <h5 class="text-white">Dog</h5>
-                                        </div>
-                                        <div class="px-5 nav-item py-4 position-absolute" style="z-index: 10; bottom: 0; right: 0;">
-                                            <a href="https://www.pexels.com/es-es/@wildlittlethingsphoto" class="text-secondary nav-link"
-                                               data-bs-toggle="tooltip" data-bs-placement="top" title="Photographer">
-                                                Helena Lopes
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="splide__slide" style="height: 100vh;">
-                                    <div class="rounded position-relative" style="height: 100vh;">
-                                        <div class="bg-dark position-absolute" style="width: 100%; height: 100vh;">
-                                            <img src="https://images.pexels.com/photos/1521304/pexels-photo-1521304.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                                                 alt="" style="width: 100%; height: 100vh; object-fit: cover; background-color:rgba(0,0,0,0.8); opacity: 0.5;">
-                                        </div>
-                                        <div class="px-5 py-4 position-absolute" style="z-index: 10; top: 0; width: 100%;">
-                                            <h2 class="mb-0"><a class="text-white navbar-brand font-weight-bolder title" href="{{@url('/')}}">Petshop</a></h2>
-                                        </div>
-                                        <div class="px-5 py-4 position-absolute" style="z-index: 10; bottom: 0; width: 100%;">
-                                            <h5 class="text-white">Cat</h5>
-                                        </div>
-                                        <div class="px-5 nav-item py-4 position-absolute" style="z-index: 10; bottom: 0; right: 0;">
-                                            <a href="https://www.pexels.com/es-es/@kirsten-buhne-682055" class="text-secondary nav-link"
-                                               data-bs-toggle="tooltip" data-bs-placement="top" title="Photographer">
-                                                Kirsten Bühne
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
