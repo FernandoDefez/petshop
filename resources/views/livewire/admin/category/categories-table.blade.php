@@ -1,38 +1,29 @@
 <div>
-    <div class="scrollspy-example mx-auto mb-4" style="width: 90%; min-height: 50vh; outline: none;">
-        <div style="overflow-x: scroll">
-            <table class="table table-bordered bg-white">
-                <thead class="" style="background: rgba(240, 240, 240, 0.946);">
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Pet</th>
-                    <th scope="col">Created At</th>
-                    <th scope="col">Updated At</th>
-                    <th scope="col">Remove</th>
-                    <th scope="col">Update</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($categories as $category)
-                <tr>
-                    <th class="align-middle">{{ $category->id }}</th>
-                    <td class="align-middle">{{ $category->category_name }}</td>
-                    <td class="align-middle">{{ $category->pet_name }}</td>
-                    <td class="align-middle">{{ $category->created_at }}</td>
-                    <td class="align-middle">{{ $category->updated_at }}</td>
-                    <td class="align-middle">
-                        <button class="btn btn-danger btn-sm">Remove</button>
-                    </td>
-                    <td class="align-middle">
-                        <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#editModal">
-                            Edit
-                        </button>
-                    </td>
-                </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
+    <div class="m-auto mb-2 d-flex flex-wrap" style="width: 90%">
+        @foreach($categories as $category)
+            <div class="col-lg-3 m-0 mb-4">
+                <div class="card">
+                    <div class="card-body p-0 pb-0">
+                        <div class="col-12 px-3 py-3 d-flex justify-content-between align-items-center flex-wrap">
+                            <div class="col-8 mb-0 px-2">
+                                <h5 class="col-12 font-weight-bold px-0 mb-0 text-left">
+                                    {{$category->category_name}}
+                                </h5>
+                                <p class="col-12 font-weight-bold px-0 text-secondary mb-0 text-left">
+                                    {{$category->pet_name}}
+                                </p>
+                            </div>
+                            <h5 class="col-4 font-weight-bold px-0 mb-0 px-2 text-right">
+                                {{$category->id}}
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white d-flex justify-content-between">
+                        <button class="btn btn-danger btn-sm col-5"> Remove </button>
+                        <button class="btn btn-primary btn-sm col-5"> Edit </button>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
 </div>

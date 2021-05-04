@@ -14,6 +14,9 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!--- Splide CSS for Carousel --->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+
     <!-- Bootstrap Icons CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 
@@ -163,7 +166,7 @@
         <div class="col-sm-4" style="margin-bottom: 40px">
             <h5 class="font-weight-bold"> Pets </h5>
             <div class="light rounded" style="margin-top: 2vh; height: 200px">
-                <div class="splide rounded position-relative bg-success overflow-hidden" id="splide" style="height: 100%">
+                <div class="splide rounded position-relative overflow-hidden" id="splide" style="height: 100%">
                     <div class="splide__track">
                         <ul class="splide__list">
                             @foreach ($pets as $pet)
@@ -172,9 +175,6 @@
                                     <div class="bg-dark position-absolute" style="width: 100%; height: 100%;">
                                         <img src="{{asset('storage/pets/'.$pet->img)}}"
                                             alt="" style="width: 100%; height: 100%; object-fit: cover; background-color:rgba(0,0,0,0.7); opacity: 0.5;">
-                                    </div>
-                                    <div class="px-5 py-4 position-absolute" style="z-index: 10; bottom: 0; width: 100%;">
-                                        <h5 class="fw-bold text-white">{{ $pet->pet_name  }}</h5>
                                     </div>
                                 </div>
                             </li>
@@ -210,7 +210,22 @@
         </div>
     </footer>
 </body>
+
     <!-- Scripts -->
+    @guest
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+        <script>
+            new Splide( '#splide', {
+                type  : 'loop',
+                rewind: true,
+                autoplay: true,
+                pauseOnHover: false
+            } ).mount();
+        </script>
+        @else
+    @endguest
+
     @yield('scripts')
+
     @livewireScripts
 </html>

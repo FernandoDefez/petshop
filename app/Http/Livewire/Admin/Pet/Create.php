@@ -19,11 +19,6 @@ class Create extends Component
         'image' => 'required|image|max:5120'
     ];
 
-    protected $listeners = [
-        'save' => 'store',
-        'dont_save' => 'resetModal'
-    ];
-
     public function mount(){
         $this->input_id = rand();
     }
@@ -54,7 +49,6 @@ class Create extends Component
 
     public function resetModal()
     {
-        $this->emit('close_modal_alert');
         $this->reset(['pet', 'image']);
         $this->input_id = rand();
     }

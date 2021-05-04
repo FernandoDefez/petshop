@@ -1,6 +1,6 @@
 <div class="modal-content">
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create a new category</h5>
+        <h5 class="modal-title" id="createCategoryModalLabel">Create a new category</h5>
         <button type="button" wire:click="resetModal" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -55,6 +55,6 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" wire:click="resetModal" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" wire:click="store">Create pet</button>
+        <button type="button" class="btn btn-primary" wire:click="store">Create category</button>
     </div>
 </div>

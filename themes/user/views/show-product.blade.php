@@ -1,9 +1,5 @@
 @extends('layouts.header')
 
-@section('styles-link')
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
-@endsection
-
 @section('style')
 <style>
      /*Small devices (landscape phones, 576px and up)*/
@@ -95,7 +91,7 @@
                                         <div class="d-flex flex-wrap" style="width: 100%">
                                             <div class="dark position-relative product-img" style="width: 24%; border-top-left-radius: 5px; border-bottom-left-radius: 5px">
                                                 <div class="py-4" style="width: 100%; height: 100%">
-                                                    <img src="https://cdn.shopify.com/s/files/1/0291/9097/9643/products/7501072202314_af2691ad-7f92-4835-9bcd-d92de90b3d05_650x.png?v=1603931569"
+                                                    <img src="{{asset('storage/products/'.$product->img)}}"
                                                          style="height: 100%; width: 100%"
                                                          alt="">
                                                 </div>
@@ -141,7 +137,7 @@
                                                                  <div class="d-flex flex-wrap" style="width: 100%">
                                                                       <div class="dark position-relative" style="width: 30%; border-top-left-radius: 5px; border-bottom-left-radius: 5px">
                                                                            <div href="#" class="py-4" style="height: 180px; width: 100%;">
-                                                                                <img src="https://cdn.shopify.com/s/files/1/0291/9097/9643/products/7501072202314_af2691ad-7f92-4835-9bcd-d92de90b3d05_650x.png?v=1603931569"
+                                                                                <img src="{{asset('storage/products/'.$product->img)}}"
                                                                                      style="height: 100%; width: 100%"
                                                                                      alt="">
                                                                            </div>
@@ -174,16 +170,6 @@
 
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
-
-     {{-- Pets carousel --}}
-    <script>
-        new Splide( '#splide', {
-            type  : 'loop',
-            rewind: true,
-            autoplay: true,
-            pauseOnHover: false
-        } ).mount();
-    </script>
 
     {{-- Featured products carousel --}}
     <script>

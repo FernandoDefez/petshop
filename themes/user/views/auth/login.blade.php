@@ -19,7 +19,6 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-
     <!-- Splide -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
 
@@ -102,15 +101,6 @@
                                             </div>
                                             <div class="px-5 py-4 position-absolute" style="z-index: 10; top: 0; width: 100%;">
                                                 <h2 class="mb-0"><a class="text-white navbar-brand font-weight-bolder title" href="{{@url('/')}}">Petshop</a></h2>
-                                            </div>
-                                            <div class="px-5 py-4 position-absolute" style="z-index: 10; bottom: 0; width: 100%;">
-                                                <h5 class="text-white">{{$pet->pet_name}}</h5>
-                                            </div>
-                                            <div class="px-5 nav-item py-4 position-absolute" style="z-index: 10; bottom: 0; right: 0;">
-                                                <a href="https://www.pexels.com/es-es/@wildlittlethingsphoto" class="text-secondary nav-link"
-                                                   data-bs-toggle="tooltip" data-bs-placement="top" title="Photographer">
-                                                    Helena Lopes
-                                                </a>
                                             </div>
                                         </div>
                                     </li>

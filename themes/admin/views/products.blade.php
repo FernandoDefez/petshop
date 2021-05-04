@@ -3,21 +3,21 @@
 @section('main')
     {{-- Main --}}
     <section class="m-auto bg-light" style="width: 100%; height: 100%; overflow-y: scroll; outline: none;">
-        <div class="m-auto my-5 py-5" style="width: 90%">
-            <button class="btn btn-outline-primary btn-sm fw-bold" id="menu-button">&larr; Menu</button>
+        <div class="m-auto my-2 py-4 px-3" style="width: 90%">
+            <button class="btn btn-outline-primary btn-sm font-weight-bold" id="menu-button">&larr; Menu</button>
             <br>
             <br>
             <div class="d-flex mt-4 justify-content-between">
                 <div>
-                    <h3 class="font-weight-bold">Pets</h3>
+                    <h3 class="font-weight-bold">Products</h3>
                 </div>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#exampleModal">
-                    Create a new pet
+                <button type="button" class="btn btn-success font-weight-bold" data-toggle="modal" data-target="#createProductModal">
+                    Create a new product <i class="bi bi-plus"></i>
                 </button>
             </div>
         </div>
-        <livewire:admin.pet.pets-table />
+        <livewire:admin.product.products-table />
         <br>
         <footer class="bg-light d-flex flex-column align-items-center py-3">
             <div style="width: 100%">
@@ -32,17 +32,15 @@
     </section>
 
     <!-- Modal for creating a new pet-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <livewire:admin.pet.create-pet />
-            </div>
+    <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <livewire:admin.product.create/>
         </div>
     </div>
 
     <!-- Modal for updating a selected pet-->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal fade" id="editProductModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Modal title</h5>
@@ -64,56 +62,17 @@
 
 @section('myscripts')
     <script type="text/javascript">
-
-        //Actions for creating a new pet
-        window.livewire.on('pet_created_alert', ($message) => {
+        //Actions for creating a new product
+        window.livewire.on('product_created_alert', ($message) => {
             Swal.fire(
-                'New pet created!',
+                'New product created!',
                 $message,
                 'success'
             );
             setTimeout(function(){
-                $('#exampleModal').modal('hide');
+                $('#createProductModal').modal('hide');
             }, 1200) // 5 seconds.
         });
-
-        window.livewire.on('pet_did_not_create_alert', ($message) => {
-            Swal.fire(
-                'Something went wrong',
-                $message,
-                'warning'
-            );
-        });
-
-        /*$('#exampleModal').on('hide.bs.modal', function (event) {
-                console.log(event)
-                Swal.fire({
-                    title: 'Do you want to save the changes?',
-                    showDenyButton: true,
-                    showCancelButton: true,
-                    confirmButtonText: `Save`,
-                denyButtonText: `Don't save`,
-            }).then((result) => {
-                Read more about isConfirmed, isDenied below
-                if (result.isConfirmed) {
-                    Livewire.emit('save');
-                    window.livewire.on('pet_did_not_create_alert', ($message) => {
-                        Swal.fire(
-                            'Something went wrong',
-                            $message,
-                            'warning'
-                        );
-                        $('#exampleModal').modal('show');
-                    });
-                } else if (result.isDenied) {
-                    $('#exampleModal').modal('hide');
-                    Livewire.emit('dont_save');
-                    Swal.fire('Changes are not saved', '', 'info')
-                }else{
-                    $('#exampleModal').modal('show');
-                }
-            })
-        })*/
     </script>
 @endsection
 

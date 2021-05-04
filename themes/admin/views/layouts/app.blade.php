@@ -13,20 +13,25 @@
     <script src="{{ asset('themes/admin/js/app.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-    <!-- Fonts -->
+    <!-- Fonts
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    -->
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 
     <!-- Styles -->
     <link href="{{ asset('themes/admin/css/app.css') }}" rel="stylesheet">
     <style>
         .active-menu{
-            width: 0% !important;
-            padding: 0 !important;
+            width: 230px !important;
+            padding: 15px 25px !important;
         }
 
         #menu{
-            width: 230px;
+            width: 0;
+            padding: 0;
             transition: width 0.6s ease-in-out;
         }
 
@@ -37,10 +42,6 @@
         .dark{
             background: #212529 !important;
         }
-
-        .light{
-            background: #f5f5f5;
-        }
     </style>
     @livewireStyles
 </head>
@@ -50,40 +51,33 @@
                 <a class="navbar-brand text-white font-weight-bold title" href="{{ route('admin.home') }}">
                     {{ __('Petshop Admin')}}
                 </a>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="ml-auto navbar-nav">
-                        <!-- Authentication Links -->
-                        @guest('admin')
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="{{ route('admin.login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::guard('admin')->user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu position-absolute dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item text-danger" href="{{ route('admin.logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
+                <!-- Right Side Of Navbar -->
+                <ul class="ml-auto navbar-nav">
+                    <!-- Authentication Links -->
+                    @guest('admin')
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ route('admin.login') }}">{{ __('Login') }}</a>
                             </li>
-                        @endguest
-                    </ul>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::guard('admin')->user()->name }}
+                            </a>
+                            <div class="dropdown-menu position-absolute dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <form action="{{ route('admin.logout') }}" method="POST" class="p-3">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm font-weight-bold btn-block">{{ __('Logout') }}</button>
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
+                </ul>
             </div>
         </nav>
 
-        <main class="m-0 d-flex " style="height: 89vh;">
+        <main class="m-0 d-flex" style="height: 89vh;">
             @yield('content')
         </main>
 

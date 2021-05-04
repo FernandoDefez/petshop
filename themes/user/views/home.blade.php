@@ -1,9 +1,5 @@
 @extends('layouts.header')
 
-@section('styles-link')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
-@endsection
-
 @section('style')
 <style>
     /*Small devices (landscape phones, 576px and up)*/
@@ -43,7 +39,7 @@
                     @foreach( $categories as $category )
                         @if( $pet->id == $category->pet_id)
                         <li>
-                            <a class="dropdown-item" href="{{ route('products', [ 'pet' => $pet->pet_name, 'category' => $category->category_name]) }}">
+                            <a class="dropdown-item" href="{{ route('products', [ 'pet' => strtolower($pet->pet_name), 'category' => strtolower($category->category_name)]) }}">
                                 {{ strtolower($category->category_name) }}
                             </a>
                         </li>
@@ -62,7 +58,7 @@
         </div>
         <div class="light rounded py-4 px-2 mt-0" style="min-height: 200px">
             <div class="row justify-content-between m-0 p-0" style="width: 100%; height: 100%">
-                <div class="col-12 px-0" style="height: 100%; margin-bottom: 30px">
+                <div class="col-12 px-0" style="height: 100%;">
                     <div class="d-flex justify-content-between align-items-center px-2">
                         <nav aria-label="breadcrumb font-weight-bold">
                             <ol class="breadcrumb bg-transparent py-1 px-0  mb-0">
@@ -81,8 +77,8 @@
                                 <article class="d-flex align-items-end my-3 px-2 bg-light product" style="height: 100%; width: 50%;">
                                     <div class="d-flex flex-wrap" style="height: 180px; width: 100%">
                                         <div class="dark position-relative" style="width: 30%; border-top-left-radius: 5px; border-bottom-left-radius: 5px">
-                                            <div href="#" class="py-4" style="height: 180px; width: 100%;">
-                                                <img src="https://cdn.shopify.com/s/files/1/0291/9097/9643/products/7501072202314_af2691ad-7f92-4835-9bcd-d92de90b3d05_650x.png?v=1603931569"
+                                            <div href="#" class="py-2" style="height: 180px; width: 100%;">
+                                                <img src="{{asset('storage/products/'.$product->img)}}"
                                                      style="height: 100%; width: 100%"
                                                      alt="">
                                             </div>
@@ -106,16 +102,4 @@
         </div>
     </div>
 </section>
-@endsection
-
-@section('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
-    <script>
-        new Splide( '#splide', {
-            type  : 'loop',
-            rewind: true,
-            autoplay: true,
-            pauseOnHover: false
-        } ).mount();
-    </script>
 @endsection

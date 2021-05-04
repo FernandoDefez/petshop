@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- Navigation --}}
-    <section class="dark p-4" style="height: 100%; overflow-y: scroll;" id="menu">
+    <section class="dark" style="height: 100%; overflow-y: scroll;" id="menu">
         <nav class="my-2">
             <p class="text-light fw-bold">Entities</p>
             <ul class="d-flex flex-column p-0">
@@ -14,4 +14,3 @@
     </section>
     @yield('main')
 @endsection
-

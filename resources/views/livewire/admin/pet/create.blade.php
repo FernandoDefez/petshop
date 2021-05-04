@@ -1,6 +1,6 @@
 <div class="modal-content">
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create a new pet</h5>
+        <h5 class="modal-title" id="createPetModalLabel">Create a new pet</h5>
         <button type="button" wire:click="resetModal" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -11,7 +11,7 @@
             <div class="spinner-border spinner-border-sm" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
-            <strong>Uploading image, </strong> , please wait
+            <strong>Uploading image, </strong> please wait
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -43,7 +43,7 @@
         </div>
         <div class="input-group mb-3 d-flex flex-column">
             <label for="PetImage" class="form-label">Select an image</label>
-            <input type="file" id="PetImage" wire:model="image" class="form-control-file is-valid  @error('image') is-invalid @enderror" accept="image/*" id="{{$input_id}}">
+            <input type="file" id="PetImage" wire:model="image" class="form-control-file  @error('image') is-invalid @enderror" accept="image/*" id="{{$input_id}}">
             @if ($image)
                 <div class="valid-feedback" id="PetImage"> {{ __('Valid Image') }} </div>
             @else

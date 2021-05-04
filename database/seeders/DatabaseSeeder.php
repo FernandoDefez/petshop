@@ -22,12 +22,16 @@ class DatabaseSeeder extends Seeder
         Storage::deleteDirectory('pets');
         Storage::makeDirectory('pets');
 
-        \App\Models\Pet::factory(2)
+        Storage::deleteDirectory('products');
+        Storage::makeDirectory('products');
+
+        /*
+        \App\Models\Pet::factory(1)
             ->has(
-                \App\Models\Category::factory()->count(2)
+                \App\Models\Category::factory()->count(1)
                     ->has(
-                        \App\Models\Product::factory()->count(2)
+                        \App\Models\Product::factory()->count(1)
                     )
-            )->create();
+            )->create();*/
     }
 }

@@ -3,8 +3,8 @@
 @section('main')
     {{-- Main --}}
     <section class="m-auto bg-light" style="width: 100%; height: 100%; overflow-y: scroll; outline: none;">
-        <div class="m-auto my-5 py-5" style="width: 90%">
-            <button class="btn btn-outline-primary btn-sm fw-bold" id="menu-button">&larr; Menu</button>
+        <div class="m-auto my-2 py-4 px-3" style="width: 90%">
+            <button class="btn btn-outline-primary btn-sm font-weight-bold" id="menu-button">&larr; Menu</button>
             <br>
             <br>
             <div class="d-flex mt-4 justify-content-between">
@@ -12,8 +12,8 @@
                     <h3 class="font-weight-bold">Categories</h3>
                 </div>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#exampleModal">
-                    Create a new category
+                <button type="button" class="btn btn-success font-weight-bold" data-toggle="modal" data-target="#createCategoryModal">
+                    Create a new category <i class="bi bi-plus"></i>
                 </button>
             </div>
         </div>
@@ -30,9 +30,11 @@
             </div>
         </footer>
     </section>
+    {{-- Main Ending --}}
+
 
     <!-- Modal for creating a new pet-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="createCategoryModal" tabindex="-1" aria-labelledby="createCategoryModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <livewire:admin.category.create />
         </div>
@@ -70,7 +72,7 @@
                 'success'
             );
             setTimeout(function(){
-                $('#exampleModal').modal('hide');
+                $('#createCategoryModal').modal('hide');
             }, 1200) // 5 seconds.
         });
     </script>
