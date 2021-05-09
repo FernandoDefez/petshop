@@ -7,7 +7,7 @@
     </div>
     <div class="modal-body">
         {{-- Alert while uploading an image--}}
-        <div class="alert alert-warning alert-dismissible fade show col-12" wire:loading wire:loading.attr="disabled" wire:target="image" role="alert">
+        <div class="alert alert-success alert-dismissible fade show col-12" wire:loading wire:loading.attr="disabled" wire:target="image" role="alert">
             <div class="spinner-border spinner-border-sm" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -25,6 +25,7 @@
                     src="{{ $image->temporaryUrl() }}"
                     style="width: 100%; height: 100%; object-fit: cover;">
             </div>
+            <br>
         @endif
         <div class="mb-4">
             <label for="PetInput" class="form-label">Name a pet</label>

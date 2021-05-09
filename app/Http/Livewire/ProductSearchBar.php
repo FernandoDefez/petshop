@@ -19,7 +19,8 @@ class ProductSearchBar extends Component
 
     public function updatedQuery()
     {
-        $this->products = Product::where('product', 'like', '%' . $this->query . '%')
+        $this->products = Product::where('name', 'like', '%' . $this->query . '%')
+            ->take(4)
             ->get()
             ->toArray();
     }

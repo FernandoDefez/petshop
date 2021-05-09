@@ -70,9 +70,9 @@ class Create extends Component
         $image = explode ("/", $image);
 
         Product::create([
-            'product' => $this->product,
+            'name' => $this->product,
             'description' => $this->description,
-            'price' => $this->price,
+            'price' => sprintf("%.2f", $this->price),
             'slug' => $this->slug,
             'img' => $image[1],
             'category_id' => $this->selectedCategory,
@@ -81,8 +81,8 @@ class Create extends Component
 
         $this->input_id = rand();
         $this->reset(['product', 'description', 'price', 'image']);
-        $this->emit('refresh_products_table');
-        $this->emit('product_created_alert', "Product created succesfully");
+        $this->emit('refresh-products-table');
+        $this->emit('product-created-alert', "Product created successfully");
     }
 
     public function resetModal()

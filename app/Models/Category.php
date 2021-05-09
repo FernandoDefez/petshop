@@ -15,15 +15,22 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        'category_name',
+        'name',
         'pet_id'
     ];
 
+
+    /**
+     * Many categories to one pet Relationship
+     */
     public function pet()
     {
         return $this->belongsTo(Pet::class);
     }
 
+    /**
+     * One category to many products Relationship
+     */
     public function products()
     {
         return $this->hasMany(Product::class);

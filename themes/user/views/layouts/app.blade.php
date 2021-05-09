@@ -18,46 +18,42 @@
 
     <!-- Styles -->
     <link href="{{ url('themes/user/css/app.css') }}" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Nunito', sans-serif !important;
-        }
-        
-        .title{
-            font-size: 21px !important;
-        }
-        
-        .dark{
-            background: #212529 !important;
-        }
-
-        .light{
-            background: #f5f5f5;
-        }
-    </style>
 </head>
+
+<style type="text/css">
+  body {
+    font-family: Bahnschrift;
+    background: #f1f1f1;
+  }
+  .title {
+    font-size: 24px !important;
+  }
+  .dark{
+      background: #212529 !important;
+  }
+</style>
+
 <body>
-    <div class="dark col-12 px-4 py-3">
-        <div class="mb-0 d-flex justify-content-between align-items-center">
-            <a class="text-white navbar-brand font-weight-bold title" href="{{@url('/')}}"> {{ __('Petshop') }} </a>
-            <div class="d-flex align-items-center">
-            @guest
-                @if (Route::has('login'))
-                        <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
-                @endif
-                @if (Route::has('register'))
-                    <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
 
-                @endif
-            @endguest
-            </div>
-        </div>
-    </div>
+  <div class="dark col-12 px-4 py-3">
+      <div class="mb-0 d-flex justify-content-between align-items-center">
+          <a class="text-white navbar-brand font-weight-bold title" href="{{ route('home') }}"> {{ __('Petshop') }}</a>
+          <div class="d-flex align-items-center">
+              @guest
+                  @if (Route::has('login'))
+                      <a class="nav-link text-secondary" href="{{ route('login') }}">{{ __('Login') }}</a>
+                  @endif
+                      @if (Route::has('register'))
+                          <a class="nav-link text-secondary" href="{{ route('register') }}">{{ __('Register') }}</a>
+                      @endif
+              @endguest
+          </div>
+      </div>
+  </div>
 
-    <main class="py-4">
-        @yield('content')
-    </main>
-    </div>
+  <main class="py-4">
+      @yield('content')
+  </main>
+
 </body>
 </html>

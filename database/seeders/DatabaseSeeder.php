@@ -25,13 +25,12 @@ class DatabaseSeeder extends Seeder
         Storage::deleteDirectory('products');
         Storage::makeDirectory('products');
 
-        /*
-        \App\Models\Pet::factory(1)
+        \App\Models\Pet::factory(2)
             ->has(
-                \App\Models\Category::factory()->count(1)
+                \App\Models\Category::factory()->count(3)
                     ->has(
-                        \App\Models\Product::factory()->count(1)
+                        \App\Models\Product::factory()->count(10)
                     )
-            )->create();*/
+            )->create();
     }
 }

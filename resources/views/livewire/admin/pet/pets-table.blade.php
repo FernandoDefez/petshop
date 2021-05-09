@@ -1,10 +1,10 @@
 <div>
-    <div class="m-auto mb-2 d-flex flex-wrap" style="width: 90%">
+    <div class="m-auto mb-2 d-flex flex-wrap" style="width: 98%" id="pets-table">
         @foreach($pets as $pet)
-        <div class="col-lg-4 m-0 mb-5">
+        <div class="col-sm-6 col-md-4 col-lg-3 m-0 mb-5">
             <div class="card">
                 <div class="card-body p-0 pb-0">
-                    <div class="mb-2" style="height: 140px">
+                    <div class="mb-2" style="height: 120px">
                         <img
                             loading="lazy"
                             decoding="async"
@@ -14,7 +14,7 @@
                     </div>
                     <div class="col-12 px-3 py-1 mb-2 d-flex justify-content-between align-items-center">
                         <h5 class="col-9 font-weight-bold px-0 text-dark mb-0 px-2 text-left">
-                            {{$pet->pet_name}}
+                            {{$pet->name}}
                         </h5>
                         <h5 class="col-3 font-weight-bold px-0 text-dark mb-0 px-2 text-right">
                             {{$pet->id}}
@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="card-footer bg-white d-flex justify-content-between">
-                    <button class="btn btn-danger btn-sm col-5"> Remove </button>
+                    <button class="btn btn-danger btn-sm col-5" value="{{$pet->id}}"> Remove </button>
                     <button class="btn btn-primary btn-sm col-5"> Edit </button>
                 </div>
             </div>

@@ -16,7 +16,7 @@
                 required>
                 <option selected value="">Choose...</option>
                 @foreach($pets as $pet)
-                    <option value="{{$pet->id}}"> {{$pet->pet_name}} </option>
+                    <option value="{{$pet->id}}"> {{$pet->name}} </option>
                 @endforeach
             </select>
             @if (!empty($pet_id))

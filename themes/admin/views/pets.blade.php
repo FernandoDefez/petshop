@@ -1,13 +1,19 @@
-@extends('layouts.nav')
+@extends('layouts.app')
 
-@section('main')
+@section('content')
+    <section>
+        <nav class="my-2">
+            <ul class="d-flex p-0">
+                <a href="{{route('admin.pets')}}" class="nav-link text-secondary fw-bold">Create a Pet</a>
+                <a href="{{route('admin.categories')}}" class="nav-link text-secondary fw-bold">Create a Category</a>
+                <a href="{{route('admin.products')}}" class="nav-link text-secondary fw-bold">Create a Product</a>
+            </ul>
+        </nav>
+    </section>
     {{-- Main --}}
-    <section class="m-auto bg-light" style="width: 100%; height: 100%; overflow-y: scroll; outline: none;">
-        <div class="m-auto my-2 py-4 px-3" style="width: 90%">
-            <button class="btn btn-outline-primary btn-sm font-weight-bold" id="menu-button">&larr; Menu</button>
-            <br>
-            <br>
-            <div class="d-flex mt-4 justify-content-between">
+    <section class="m-auto" style="width: 100%; height: 100%;">
+        <div class="m-auto my-2 py-4 px-3" style="width: 98%">
+            <div class="d-flex mt-0 justify-content-between">
                 <div>
                     <h3 class="font-weight-bold">Pets</h3>
                 </div>
@@ -18,7 +24,7 @@
             </div>
         </div>
         <livewire:admin.pet.pets-table />
-        <footer class="bg-light d-flex flex-column align-items-center py-3">
+        <footer class="d-flex flex-column align-items-center py-3">
             <div style="width: 100%">
                 <div class="m-auto d-flex justify-content-between py-2">
                     <nav class="d-flex m-auto">
@@ -63,7 +69,7 @@
 @section('myscripts')
     <script type="text/javascript">
         //Actions for creating a new pet
-        window.livewire.on('pet_created_alert', ($message) => {
+        window.livewire.on('pet-created-alert', ($message) => {
             Swal.fire(
                 'New pet created!',
                 $message,
@@ -72,6 +78,29 @@
             setTimeout(function(){
                 $('#createPetModal').modal('hide');
             }, 1200) // 5 seconds.
+        });
+
+        $('#pets-table').on('click', function(event) {
+            if (event.target.outerText == "Remove"){
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.emit('delete-pet', { id : event.target.value });
+                        Swal.fire(
+                            'Deleted!',
+                            'Pet has been deleted.',
+                            'success'
+                        )
+                    }
+                })
+            }
         });
     </script>
 @endsection

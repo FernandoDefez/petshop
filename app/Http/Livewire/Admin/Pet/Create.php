@@ -14,6 +14,9 @@ class Create extends Component
     public $image;
     public $input_id;
 
+    /*
+     * Validation rules
+     */
     protected $rules = [
         'pet' => 'required|min:3|max:20',
         'image' => 'required|image|max:5120'
@@ -27,6 +30,9 @@ class Create extends Component
         $this->validateOnly($propertyName);
     }
 
+    /*
+     * @method store() store a newly pet
+     */
     public function store()
     {
         $this->validate();
@@ -37,22 +43,28 @@ class Create extends Component
         $image = explode ("/", $image);
 
         Pet::create([
-            'pet_name' => $this->pet,
+            'name' => $this->pet,
             'img' => $image[1]
         ]);
 
         $this->reset(['pet', 'image']);
         $this->input_id = rand();
-        $this->emit('refresh_pets_table');
-        $this->emit('pet_created_alert', "Pet created succesfully");
+        $this->emit('refresh-pets-table');
+        $this->emit('pet-created-alert', "Pet created successfully");
     }
 
+    /*
+     * @method resetModal() reset the modal after creating a pet
+     */
     public function resetModal()
     {
         $this->reset(['pet', 'image']);
         $this->input_id = rand();
     }
 
+    /*
+     * @method render() renders the modal for creating a new pet
+     */
     public function render()
     {
         return view('livewire.admin.pet.create');

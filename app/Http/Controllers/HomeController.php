@@ -12,9 +12,8 @@ use Illuminate\Support\Facades\App;
 
 class HomeController extends Controller
 {
-
     /**
-     * Display a listing of the resource.
+     * Display a listing of the products based on their category they belong.
      * @param string $selected_pet
      * @param string $selected_category
      * @return \Illuminate\Http\Response
@@ -24,11 +23,11 @@ class HomeController extends Controller
         $petModel = new Pet;
         $pets = $petModel::all();
 
-        $pet = $petModel->where('pet_name', $selected_pet)->get()->first();
+        $pet = $petModel->where('name', $selected_pet)->get()->first();
 
-        $category = $pet->categories()->where('category_name', $selected_category)->get()->first();
+        $category = $pet->categories()->where('name', $selected_category)->get()->first();
 
-        $products = $category->products()->get();
+        $products = $category->products()->paginate(25);
 
         $categoryModel = new Category;
         $categories = $categoryModel::all();
@@ -42,28 +41,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
+     * Display the product page base on its slug.
      *
      * @param  string  $slug
      * @return \Illuminate\Http\Response
@@ -71,55 +49,21 @@ class HomeController extends Controller
     public function show(string $slug)
     {
         $productModel = new Product;
-        $products = $productModel::all()->take(5);
+        $featured_products = $productModel::all()->sortByDesc('created_at')->take(10);
         $product = $productModel->where('slug', $slug)->get()->first();
 
         $categoryModel = new Category;
         $categories = $categoryModel::all();
         $category = $categoryModel->where('id', $product->category_id)->get()->first();
 
+
         $petModel = new Pet;
         $pets = $petModel::all();
         $pet = $petModel->where('id', $category->pet_id)->get()->first();
 
-        return view('show-product', [
-            'selected_pet' => '', 'selected_category' => '',
-            'pets' => $pets, 'categories' => $categories, 'products' => $products,
-            'pet' => $pet, 'category' => $category, 'product' => $product
+        return view('product-page', [
+            'selected_pet' => $pet->name, 'selected_category' => $category->name, 'product' => $product,
+            'pets' => $pets, 'categories' => $categories, 'featured_products' => $featured_products
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

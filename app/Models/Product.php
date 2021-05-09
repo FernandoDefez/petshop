@@ -15,7 +15,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'product',
+        'name',
         'description',
         'price',
         'img',
@@ -23,14 +23,24 @@ class Product extends Model
         'category_id'
     ];
 
+
+    /**
+     * Many products to one category Relationship
+     **/
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function carts()
+
+    /**
+     * Many products to many users Relationship
+     **/
+    public function users()
     {
-        return $this->hasMany(Cart::class);
+        return $this->belongsToMany(User::class, 'carts')
+        ->withPivot('user_id')
+        ->withTimestamps();
     }
 
 }

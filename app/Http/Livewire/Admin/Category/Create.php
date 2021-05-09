@@ -12,34 +12,49 @@ class Create extends Component
     public $pet_id;
     public $category;
 
+    /*
+     * Validation rules
+     */
     protected $rules = [
         'pet_id' => 'required|integer',
         'category' => 'required|min:3|max:20'
     ];
 
+    /*
+     * Update when DOM gets changed
+     */
     public function updated($propertyName){
         $this->validateOnly($propertyName);
     }
 
+    /*
+     * @method store() store a newly category
+     */
     public function store()
     {
         $this->validate();
 
         Category::create([
-            'category_name' => $this->category,
+            'name' => $this->category,
             'pet_id' => $this->pet_id
         ]);
 
         $this->resetModal();
-        $this->emit('refresh_categories_table');
-        $this->emit('category_created_alert', "Category created succesfully");
+        $this->emit('refresh-categories-table');
+        $this->emit('category-created-alert', "Category created successfully");
     }
 
+    /*
+     * @method resetModal() resets the modal inputs after creating a category
+     */
     public function resetModal()
     {
         $this->reset(['pet_id', 'category']);
     }
 
+    /*
+     * Renders the available pets so the user can choose wich belongs to this category
+     */
     public function render()
     {
         $this->pets = Pet::all();

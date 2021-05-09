@@ -24,20 +24,16 @@
 
     <style>
         body {
-            font-family: 'Nunito', sans-serif !important;
+            background: #f1f1f1;
+            font-family: Bahnschrift;
         }
 
         .title{
-            font-size: 21px;
+            font-size: 24px;
         }
-
 
         .dark{
-            background: #161C24 !important;
-        }
-
-        .light{
-            background: #f5f5f5;
+            background: #212529 !important;
         }
 
         @media (max-width: 768px) {
@@ -67,7 +63,7 @@
 </head>
 <body class="bg-light" style="overflow: hidden; width: 100vw; height: 100vh">
     <main class="m-0 p-0 position-relative" style="width: 100vw; height: 100vh">
-        <div class="header position-absolute dark col-12 px-4 py-3" style="display: none">
+        <div class="header position-absolute dark bg-dark col-12 px-4 py-3" style="display: none">
             <div class="mb-0 d-flex justify-content-between align-items-center">
                 <a class="text-white navbar-brand font-weight-bold title" href="{{@url('/')}}">
                     {{ __('Petshop') }}
@@ -75,10 +71,10 @@
                 <div class="d-flex align-items-center">
                 @guest
                     @if (Route::has('login'))
-                            <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link text-secondary" href="{{ route('login') }}">{{ __('Login') }}</a>
                     @endif
                     @if (Route::has('register'))
-                        <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link text-secondary" href="{{ route('register') }}">{{ __('Register') }}</a>
 
                     @endif
                 @endguest

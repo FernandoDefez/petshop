@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartController;
 use App\Models\Product;
 
 /*
@@ -25,9 +26,19 @@ Route::get('/', function () {
         'selected_category' => '',
         'pets' => \App\Models\Pet::all(),
         'categories' => \App\Models\Category::all(),
-        'products' => \App\Models\Product::all()
+        'products' => \App\Models\Product::paginate(20)
     ]);
 })->name('home');
+
+
+Route::get('cart', function (){ return view('cart'); })->name('cart');
+Route::post('cart', [CartController::class, 'store'])->name('cart');
+
+Route::get('profile', function (){
+    return view('profile');
+})->name('profile');
+
+Route::get('checkout', function (){ return view('checkout'); })->name('checkout');
 
 Route::get('products/{pet}/{category}', [HomeController::class, 'index'])->name('products');
 

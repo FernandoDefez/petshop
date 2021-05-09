@@ -15,10 +15,13 @@ class Pet extends Model
      * @var array
      */
     protected $fillable = [
-        'pet_name',
+        'name',
         'img'
     ];
 
+    /**
+     * One pet to many categories Relationship
+     */
     public function categories()
     {
         return $this->hasMany(Category::class);

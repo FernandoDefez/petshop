@@ -41,8 +41,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function carts()
+    /**
+     * Many users to many products Relationship
+     **/
+    public function products()
     {
-        return $this->hasMany(Cart::class);
+        return $this->belongsToMany(Product::class, 'carts')
+          ->withPivot('product_id','quantity')
+          ->withTimestamps();
     }
+
 }
