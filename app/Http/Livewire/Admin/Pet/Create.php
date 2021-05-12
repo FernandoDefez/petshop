@@ -14,24 +14,30 @@ class Create extends Component
     public $image;
     public $input_id;
 
-    /*
-     * Validation rules
+    /**
+     * Declaring the validation rules
      */
     protected $rules = [
         'pet' => 'required|min:3|max:20',
         'image' => 'required|image|max:5120'
     ];
 
+    /**
+     * The Create Component's constructor.
+     */
     public function mount(){
         $this->input_id = rand();
     }
 
+    /**
+     * Check validation rules for all the values
+     */
     public function updated($propertyName){
         $this->validateOnly($propertyName);
     }
 
-    /*
-     * @method store() store a newly pet
+    /**
+     * Store a newly pet
      */
     public function store()
     {
@@ -53,8 +59,8 @@ class Create extends Component
         $this->emit('pet-created-alert', "Pet created successfully");
     }
 
-    /*
-     * @method resetModal() reset the modal after creating a pet
+    /**
+     * Reset the values so the modal can show empty values on the inputs
      */
     public function resetModal()
     {
@@ -62,8 +68,12 @@ class Create extends Component
         $this->input_id = rand();
     }
 
-    /*
-     * @method render() renders the modal for creating a new pet
+    /**
+     * The view rendered by the Create Component.
+     *
+     * This view is located in the following directory resources/views/livewire/admin/pet
+     *
+     * @return view
      */
     public function render()
     {

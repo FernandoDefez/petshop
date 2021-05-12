@@ -1,4 +1,4 @@
-<div class="modal-content">
+<div class="modal-content bg-light shadow-sm">
     <div class="modal-header">
         <h5 class="modal-title">Create a new product</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -8,8 +8,8 @@
     <div class="modal-body">
         <div class="row">
             <!-- Image Column --->
-            <div class="col-4">
-                <div class="alert alert-warning alert-dismissible fade show col-12" wire:loading wire:loading.attr="disabled" wire:target="image" role="alert">
+            <div class="col-12">
+                <div class="alert alert-success alert-dismissible fade show col-12" wire:loading wire:loading.attr="disabled" wire:target="image" role="alert">
                     <div class="spinner-border spinner-border-sm" role="status">
                         <span class="sr-only">Loading...</span>
                     </div>
@@ -19,23 +19,24 @@
                     </button>
                 </div>
                 @if($image)
-                    <img
-                        class="img-thumbnail"
-                        loading="lazy"
-                        decoding="async"
-                        src="{{ $image->temporaryUrl() }}"
-                        style="width: 100%; height: 100%; object-fit: cover;"
-                        alt="...">
+                    <div class="mb-4">
+                        <img
+                            loading="lazy"
+                            decoding="async"
+                            src="{{ $image->temporaryUrl() }}"
+                            style="width: 100%; height: 100%; object-fit: cover;"
+                            alt="...">
+                    </div>
                 @endif
             </div>
             <!-- Information Column --->
-            <div class="col-8">
+            <div class="col-12">
                 <form>
                     <!-- First Row --->
                     <div class="form-row">
                         <!-- Pet Selector --->
-                        <div class="form-group col-md-3">
-                            <label for="selectPetInput">Pet</label>
+                        <div class="form-group col-sm-6 text-secondary">
+                            <label for="selectPetInput">Choose a Pet</label>
                             <select
                                 wire:model="selectedPet"
                                 id="selectPetInput"
@@ -64,8 +65,8 @@
 
                         <!-- Category Selector --->
                         @if (!is_null($selectedPet))
-                        <div class="form-group col-md-3">
-                            <label for="selectCategoryInput">Category</label>
+                        <div class="form-group col-sm-6 text-secondary">
+                            <label for="selectCategoryInput">Choose a Category</label>
                             <select
                                 wire:model="selectedCategory"
                                 id="selectCategoryInput"
@@ -91,8 +92,27 @@
                             @endif
                         </div>
                         @endif
+                    </div>
+
+                    <div class="form-group">
+                        <!-- Upload Image --->
+                        <div class="form-group col-sm-12 p-0 text-secondary">
+                            <label for="productImageInput">Upload an image</label>
+                            <input type="file" wire:model="image" class="form-control-file @if($image) is-valid @else @error('image') is-invalid @enderror @endif" id="productImageInput" accept="image/png">
+                            @if($image)
+                                <div class="valid-feedback"> {{ __('Valid Image') }} </div>
+                            @else
+                                @error('image')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            @endif
+                        </div>
+                    </div>
+
+                    <!-- Second Row --->
+                    <div class="form-row">
                         <!-- Set Product Name --->
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-sm-12 text-secondary">
                             <label for="productInput">Product Name</label>
                             <input type="text" wire:model="product" class="form-control @if ($product) is-valid @else @error('product') is-invalid @enderror @endif" id="productInput"
                                    placeholder="Product">
@@ -106,39 +126,44 @@
                         </div>
                     </div>
 
-                    <!-- Second Row --->
-                    <div class="form-row">
-                        <!-- Upload Image --->
-                        <div class="form-group col-md-9 d-flex flex-column">
-                            <label for="productImageInput">Select an image</label>
-                            <input type="file" wire:model="image" class="form-control-file" id="productImageInput" accept="image/png">
-                            @if($image)
-                                <div class="valid-feedback"> {{ __('Valid Image') }} </div>
+                    <!-- Third Row --->
+                    <div class="form-row mb-1">
+                        <!-- Set Quantity Available --->
+                        <div class="form-group col-6 text-secondary">
+                            <label for="AvailabiltyInput" class="">Quantity Available</label>
+                            <input type="number" wire:model="availability"
+                                   class="form-control @if($availability) is-valid @else @error('availability') is-invalid @enderror @endif"
+                                   id="AvailabiltyInput" placeholder="Set Quantity Available">
+                            @if ($availability)
+                                <div class="valid-feedback"> {{ __('Valid') }} </div>
                             @else
-                                @error('image')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                                @error('price')
+                                <div class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
                             @endif
                         </div>
                         <!-- Set Price --->
-                        <div class="form-group col-md-2">
-                            <label for="priceInput">Price</label>
-                            <input type="text" wire:model="price" class="form-control @if($price) is-valid @else @error('price') is-invalid @enderror @endif" id="priceInput">
+                        <div class="form-group col-6 text-secondary">
+                            <label for="PriceInput" class="">Price</label>
+                            <input type="text" wire:model="price"
+                                   class="form-control @if($price) is-valid @else @error('price') is-invalid @enderror @endif"
+                                   id="PriceInput" placeholder="Set price">
                             @if ($price)
                                 <div class="valid-feedback"> {{ __('Valid') }} </div>
                             @else
                                 @error('price')
-                                    <div class="invalid-feedback"> {{ $message }} </div>
+                                <div class="invalid-feedback"> {{ $message }} </div>
                                 @enderror
                             @endif
                         </div>
                     </div>
-                    <!-- Third Row --->
+
+                    <!-- Fourth Row --->
                     <div class="form-row">
-                        <div class="form-group col-12">
+                        <div class="form-group col-12 text-secondary">
                             <label for="descriptionTextArea">Description</label>
                             <textarea class="form-control @if($description) is-valid @else @error('description') is-invalid @enderror @endif"
-                                      wire:model="description" id="descriptionTextArea" rows="2"></textarea>
+                                      wire:model="description" id="descriptionTextArea" rows="2" placeholder="Write a description about the product"></textarea>
                             @if ($description)
                                 <div class="valid-feedback"> {{ __('Valid') }} </div>
                             @else
@@ -148,19 +173,12 @@
                             @endif
                         </div>
                     </div>
-                    <!-- Fourth Row --->
-                    <div class="form-row mt-2">
-                        <label for="basic-url">Slug</label>
-                        <div class="input-group mb-3">
-                            <input type="text" value="{{$slug}}" class="form-control" disabled id="productSlug" wire:model="slug" aria-describedby="basic-addon3">
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" wire:click="resetModal" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" wire:click="store" wire:loading.attr="disabled" wire:target="store, image" class="disabled:opacity: 0.5">Create product</button>
+        <button type="button" class="btn btn-secondary font-weight-bold btn-sm" wire:click="resetModal" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary font-weight-bold btn-sm" wire:click="store" wire:loading.attr="disabled" wire:target="store, image" class="disabled:opacity: 0.5">Create product</button>
     </div>
 </div>

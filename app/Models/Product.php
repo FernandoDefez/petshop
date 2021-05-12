@@ -20,6 +20,7 @@ class Product extends Model
         'price',
         'img',
         'slug',
+        'availability',
         'category_id'
     ];
 
@@ -42,5 +43,4 @@ class Product extends Model
         ->withPivot('user_id')
         ->withTimestamps();
     }
-
 }

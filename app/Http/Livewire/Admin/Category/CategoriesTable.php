@@ -12,34 +12,18 @@ class CategoriesTable extends Component
 {
     public $categories;
 
-    /*
-     * Listeners waiting for being emitted
+    /**
+     * The listeners waiting for being emitted
      */
     protected $listeners = [
         'refresh-categories-table' => 'render',
         'delete-category' => 'destroy'
     ];
 
-    /*
-     * @method render() shows the categories
-     */
-    public function render()
-    {
-        $this->categories = Category::select(
-            'categories.id',
-            'categories.name',
-            'pets.name',
-            'categories.created_at',
-            'categories.updated_at'
-        )->join('pets', 'pets.id', '=', 'categories.pet_id')->get();
-
-        return view('livewire.admin.category.categories-table', compact($this->categories));
-    }
-
-
     /**
-     * @array payload contains the id that comes from the frontend,
-     * specifically from the view Themes\Admin\categories.blade.php
+     * Removes a category from the database based on its ID
+     *
+     * @var payload
      */
     public function destroy($payload)
     {
@@ -60,4 +44,23 @@ class CategoriesTable extends Component
         $category->delete();
         $this->render();
     }
+
+    /**
+     * The view rendered by the CategoriesTable Component.
+     *
+     * This view is located in the following directory resources/views/livewire/admin/pet
+     *
+     * @return view
+     */
+    public function render()
+    {
+        $this->categories = Category::select(
+            'categories.id',
+            'categories.name as cat_name',
+            'pets.name as pet_name'
+        )->join('pets', 'pets.id', '=', 'categories.pet_id')->get();
+
+        return view('livewire.admin.category.categories-table', compact($this->categories));
+    }
+
 }

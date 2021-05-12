@@ -35,10 +35,10 @@
     }
 </style>
 
-<body class="bg-light">
+<body class="dark">
 <nav class="navbar shadow-sm navbar-expand-md navbar-dark dark m-0 p-3">
     <div class="container col-12 px-2">
-        <a class="navbar-brand text-white" href="{{ route('admin.home') }}" style="font-size: 21px">
+        <a class="navbar-brand text-white font-weight-bold" href="{{ route('admin.home') }}" style="font-size: 21px">
             {{ __('Petshop Admin')}}
         </a>
         <!-- Right Side Of Navbar -->

@@ -1,4 +1,4 @@
-<div class="modal-content">
+<div class="modal-content bg-light shadow-sm">
     <div class="modal-header">
         <h5 class="modal-title" id="createCategoryModalLabel">Create a new category</h5>
         <button type="button" wire:click="resetModal" class="close" data-dismiss="modal" aria-label="Close">
@@ -6,7 +6,7 @@
         </button>
     </div>
     <div class="modal-body">
-        <div class="col-md-12 mb-3 p-0">
+        <div class="col-md-12 mb-3 p-0 text-secondary">
             <label for="PetSelection">Choose a pet</label>
             <select
                 class="custom-select @if (!empty($pet_id)) is-valid @else @error('pet_id') is-invalid @enderror @endif"
@@ -30,8 +30,8 @@
             @endif
 
         </div>
-        <div class="mb-2">
-            <label for="CategoryInput" class="form-label">Name a category</label>
+        <div class="mb-2 text-secondary">
+            <label for="CategoryInput" class="form-label">Category name</label>
             <input
                 class="form-control
                 @if (strlen($category) >= 3 && strlen($category) <= 20) is-valid @else @error('category') is-invalid @enderror @endif"
@@ -39,7 +39,7 @@
                 wire:model="category"
                 id="CategoryInput"
                 aria-describedby="CategoryInputValidationFeedback"
-                placeholder="Category name"
+                placeholder="Type a category name"
                 required
             >
             @if (strlen($category) >= 3 && strlen($category) <= 20)
@@ -54,7 +54,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" wire:click="resetModal" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" wire:click="store">Create category</button>
+        <button type="button" class="btn btn-secondary font-weight-bold btn-sm" wire:click="resetModal" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary font-weight-bold btn-sm" wire:click="store">Create category</button>
     </div>
 </div>

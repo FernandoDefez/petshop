@@ -11,22 +11,18 @@ class PetsTable extends Component
 {
     public $pets;
 
+    /**
+     * The listeners waiting for being emitted
+     */
     protected $listeners = [
         'refresh-pets-table' => 'render',
         'delete-pet' => 'destroy'
     ];
-    /*
-     * @method render() show all the pets
-     */
-    public function render()
-    {
-        $this->pets = Pet::all();
-        return view('livewire.admin.pet.pets-table', compact($this->pets));
-    }
 
-    /*
-     * @method destroy() remove a pet from the database as well as delete its image from the storage
-     * @array $payload contains the id of the pet so it can be deleted from de DDBB
+    /**
+     * Removes a pet from the database based on its ID
+     *
+     * @var payload
      */
     public function destroy($payload){
         $id = $payload['id'];
@@ -48,4 +44,17 @@ class PetsTable extends Component
         $this->render();
     }
 
+
+    /**
+     * The view rendered by the PetsTable Component.
+     *
+     * This view is located in the following directory resources/views/livewire/admin/pet
+     *
+     * @return view
+     */
+    public function render()
+    {
+        $this->pets = Pet::all();
+        return view('livewire.admin.pet.pets-table', compact($this->pets));
+    }
 }

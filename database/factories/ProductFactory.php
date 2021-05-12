@@ -26,7 +26,7 @@ class ProductFactory extends Factory
             'description' => $this->faker->paragraph(2),
             'price' => $this->faker->randomFloat('2', '20.00', '200.00'),
             'img' => $this->faker->image(storage_path().'\app\public\products', 1000, 600, null, false),
-            'slug' => $this->faker->slug('15')
+            'slug' => $this->faker->slug('2')
         ];
     }
 }

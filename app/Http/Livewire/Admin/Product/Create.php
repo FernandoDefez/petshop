@@ -24,37 +24,46 @@ class Create extends Component
     public $price;
     public $description;
     public $image;
-    public $slug;
+    public $availability;
 
+
+    /**
+     * Declaring the validation rules
+     */
     protected $rules = [
-        'product' => 'required|min:3',
+        'product' => 'required|min:4',
         'image' => 'required|image|max:5120',
-        'description' => 'required|min:5',
+        'description' => 'required|min:6',
         'price' => 'required',
+        'availability' => 'required|integer|min:1',
         'selectedPet' => 'required|integer|min:1',
         'selectedCategory' => 'required|integer|min:1'
     ];
 
+
+    /**
+     * The Create Component's constructor.
+     */
     public function mount()
     {
         $this->input_id = rand();
         $this->selectedPet = 0;
+        $this->selectedCategory = 0;
         $this->selectedCategory = Null;
         $this->pets = Pet::all();
         $this->categories = collect();
     }
 
+    /**
+     * Update all the values
+     */
     public function updated($propertyName){
         $this->validateOnly($propertyName);
-
-        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $this->slug =  Str::of($this->product)->slug('-') .'-'.substr(str_shuffle($permitted_chars), 0, 16)
-            .'-d-'.substr( $this->description ,0, 16)
-            .'-p-'.$this->selectedPet
-            .'-c-'.$this->selectedCategory;
-        $this->slug = strtolower($this->slug);
     }
 
+    /**
+     * Update the selected pet <select> so the selected category <select> changes
+     */
     public function updatedSelectedPet($pet)
     {
         if (!is_null($pet)) {
@@ -62,6 +71,9 @@ class Create extends Component
         }
     }
 
+    /**
+     * Store a newly product
+     */
     public function store()
     {
         $this->validate();
@@ -73,26 +85,38 @@ class Create extends Component
             'name' => $this->product,
             'description' => $this->description,
             'price' => sprintf("%.2f", $this->price),
-            'slug' => $this->slug,
+            'slug' => Str::of($this->product)->slug('-'),
             'img' => $image[1],
+            'availability' => $this->availability,
             'category_id' => $this->selectedCategory,
         ]);
 
 
         $this->input_id = rand();
-        $this->reset(['product', 'description', 'price', 'image']);
+        $this->reset(['product', 'description', 'price', 'image', 'selectedPet', 'selectedCategory', 'availability']);
+        $this->selectedCategory = 0;
         $this->emit('refresh-products-table');
         $this->emit('product-created-alert', "Product created successfully");
     }
 
+    /**
+     * Reset the values so the modal can show empty values on the inputs
+     */
     public function resetModal()
     {
         $this->selectedPet = 0;
-        $this->selectedCategory = 0;
-        $this->reset(['product', 'description', 'price', 'image', 'slug']);
+        $this->reset(['product', 'description', 'price', 'image', 'selectedPet', 'selectedCategory', 'availability']);
         $this->input_id = rand();
     }
 
+
+    /**
+     * The view rendered by the Create Component.
+     *
+     * This view is located in the following directory resources/views/livewire/admin/product
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function render()
     {
         return view('livewire.admin.product.create');

@@ -1,4 +1,4 @@
-<div class="modal-content">
+<div class="modal-content bg-light shadow-sm">
     <div class="modal-header">
         <h5 class="modal-title" id="createPetModalLabel">Create a new pet</h5>
         <button type="button" wire:click="resetModal" class="close" data-dismiss="modal" aria-label="Close">
@@ -27,13 +27,13 @@
             </div>
             <br>
         @endif
-        <div class="mb-4">
-            <label for="PetInput" class="form-label">Name a pet</label>
+        <div class="mb-4 text-secondary">
+            <label for="PetInput" class="form-label">Pet name</label>
             <input
                 type="text"
                 class="form-control @if (strlen($pet) >= 3 && strlen($pet) <= 20) is-valid @else @error('pet') is-invalid @enderror @endif"
                    id="PetInput"
-                   aria-describedby="PetInputValidationFeedback" placeholder="Pet name"  wire:model="pet" required>
+                   aria-describedby="PetInputValidationFeedback" placeholder="Type a pet name"  wire:model="pet" required>
             @if (strlen($pet) >= 3 && strlen($pet) <= 20)
                 <div id="PetInputValidationFeedbak" class="valid-feedback"> {{ __('Valid') }} </div>
             @else
@@ -42,7 +42,7 @@
                 @enderror
             @endif
         </div>
-        <div class="input-group mb-3 d-flex flex-column">
+        <div class="input-group mb-3 d-flex flex-column text-secondary">
             <label for="PetImage" class="form-label">Select an image</label>
             <input type="file" id="PetImage" wire:model="image" class="form-control-file  @error('image') is-invalid @enderror" accept="image/*" id="{{$input_id}}">
             @if ($image)
@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" wire:click="resetModal" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" wire:click="store" wire:loading.attr="disabled" wire:target="store, image" class="disabled:opacity: 0.5">Create pet</button>
+        <button type="button" class="btn btn-secondary font-weight-bold btn-sm" wire:click="resetModal" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary font-weight-bold btn-sm" wire:click="store" wire:loading.attr="disabled" wire:target="store, image" class="disabled:opacity: 0.5">Create pet</button>
     </div>
 </div>

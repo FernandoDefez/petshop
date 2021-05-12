@@ -12,23 +12,23 @@ class Create extends Component
     public $pet_id;
     public $category;
 
-    /*
-     * Validation rules
+    /**
+     * Declaring the validation rules
      */
     protected $rules = [
         'pet_id' => 'required|integer',
         'category' => 'required|min:3|max:20'
     ];
 
-    /*
-     * Update when DOM gets changed
+    /**
+     * Check validation rules for all the values
      */
     public function updated($propertyName){
         $this->validateOnly($propertyName);
     }
 
-    /*
-     * @method store() store a newly category
+    /**
+     * Store a newly category
      */
     public function store()
     {
@@ -44,16 +44,20 @@ class Create extends Component
         $this->emit('category-created-alert', "Category created successfully");
     }
 
-    /*
-     * @method resetModal() resets the modal inputs after creating a category
+    /**
+     * Reset the values so the modal can show empty values on the inputs
      */
     public function resetModal()
     {
         $this->reset(['pet_id', 'category']);
     }
 
-    /*
-     * Renders the available pets so the user can choose wich belongs to this category
+    /**
+     * The view rendered by the Create Component.
+     *
+     * This view is located in the following directory resources/views/livewire/admin/category
+     *
+     * @return view
      */
     public function render()
     {

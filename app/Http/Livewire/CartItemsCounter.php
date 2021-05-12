@@ -13,6 +13,13 @@ class CartItemsCounter extends Component
         'refresh-cart-items-counter' => 'render'
     ];
 
+    /**
+     * The view rendered by the CartItemsCounter Component.
+     *
+     * This view is located in the following directory resources/views/livewire/
+     *
+     * @return view
+     */
     public function render()
     {
         if (auth()->user())
@@ -22,5 +29,4 @@ class CartItemsCounter extends Component
 
         return view('livewire.cart-items-counter', compact((int) $this->cart_items_counter));
     }
-
 }

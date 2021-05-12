@@ -15,12 +15,26 @@ class CartItems extends Component
 
     public $items = [];
 
+
+    /**
+     * Incrementing a requested quantity for an item
+     *
+     * @var item_id
+     */
     public function increment($item_id)
     {
         Cart::where('id', '=', $item_id)->increment('quantity');
         $this->render();
     }
 
+
+    /**
+     * Decrementing a requested quantity for an item
+     *
+     * @var item_id
+     * @var product_id
+     * @var quantity
+     */
     public function decrement($item_id, $product_id, $quantity)
     {
         if($quantity == 1){
@@ -31,6 +45,26 @@ class CartItems extends Component
         $this->render();
     }
 
+    /**
+     * Removing an item from the user's cart.
+     *
+     * @var product_id
+     */
+    public function destroy($id)
+    {
+        $user = User::find(auth()->user()->getAuthIdentifier());
+        $user->products()->detach($id);
+        $this->emit('refresh-cart-items-counter');
+    }
+
+
+    /**
+     * The view rendered by the CartItems Component.
+     *
+     * This view is located in the following directory resources/views/livewire/
+     *
+     * @return view
+     */
     public function render()
     {
         $this->subtotal = 0;
@@ -56,12 +90,5 @@ class CartItems extends Component
             return view('livewire.cart-items', compact($this->items, $this->subtotal, $this->total = $this->subtotal + $this->shippingCost));
         }
         return view('livewire.cart-items', compact($this->items));
-    }
-
-    public function destroy($id)
-    {
-        $user = User::find(auth()->user()->getAuthIdentifier());
-        $user->products()->detach($id);
-        $this->emit('refresh-cart-items-counter');
     }
 }

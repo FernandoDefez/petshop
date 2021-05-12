@@ -1,7 +1,7 @@
 <section class="d-flex responsive-section-1 justify-content-between m-0 pt-3" style="width: 100%; height: 100%">
     <div class="col-md-8" style="height: 100%; margin-bottom: 35px">
         <h5 class="font-weight-bold"> Cart </h5>
-        <div class="rounded p-3 bg-white" style="margin-top: 2vh;">
+        <div class="rounded p-3 bg-white shadow-sm" style="margin-top: 2vh;">
             <div class="d-flex justify-content-between align-items-center mb-0">
                 <h6 class="font-weight-bold py-1 m-0"> Shopping cart </h6>
                 <h6 class="font-weight-bold py-1 m-0 d-flex"> Total items:
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="m-0 p-0 d-flex justify-content-end">
                                     <h3 class=" m-0 p-0 font-weight-bold d-flex align-items-center justify-content-end">
-                                        <span>&dollar;{{ $item->quantity * sprintf("%.2f",  $item->price) }}</span>
+                                        <span>{{ '$' . $item->quantity * number_format($item->price, 2) }}</span>
                                     </h3>
                                 </div>
                             </div>
@@ -79,23 +79,23 @@
     </div>
     <div class="col-md-4" style="margin-bottom: 40px">
         <h5 class="font-weight-bold"> &nbsp; </h5>
-        <div class="rounded p-3 bg-white" style="margin-top: 2vh;">
+        <div class="rounded p-3 bg-white shadow-sm" style="margin-top: 2vh;">
             <h6 class="font-weight-bold py-1"> Cart summary </h6>
             <hr>
             @if(!$subtotal == 0)
                 <div class="px-0 d-flex align-items-center justify-content-between mb-3 px-3 py-1">
                     <p class="m-0"> Subtotal </p>
                     <p class="m-0">
-                        &dollar;{{ $subtotal }}
+                        {{ '$' . number_format($subtotal, 2)  }}
                     </p>
                 </div>
                 <div class="px-0 d-flex align-items-center justify-content-between mb-3 px-3 py-1">
                     <p class="m-0"> Shipping cost </p>
-                    <p class="m-0"> &dollar;{{ sprintf("%.2f", $shippingCost)  }} </p>
+                    <p class="m-0"> {{ '$' . number_format($shippingCost, 2)   }} </p>
                 </div>
                 <div class="bg-light px-0 d-flex align-items-center justify-content-between font-weight-bold mb-3 px-3 py-2 rounded">
                     <p class="m-0"> Total </p>
-                    <p class="m-0"> &dollar;{{ $total }} </p>
+                    <p class="m-0"> {{ '$' . number_format($total, 2) }} </p>
                 </div>
                 <div class="bg-light px-0 d-flex align-items-center justify-content-between font-weight-bold mb-3">
                     <button class="btn btn-primary btn-block font-weight-bold">

@@ -4,9 +4,9 @@
     <section>
         <nav class="my-2">
             <ul class="d-flex p-0">
-                <a href="{{route('admin.pets')}}" class="nav-link text-secondary fw-bold">Create a Pet</a>
-                <a href="{{route('admin.categories')}}" class="nav-link text-secondary fw-bold">Create a Category</a>
-                <a href="{{route('admin.products')}}" class="nav-link text-secondary fw-bold">Create a Product</a>
+                <a href="{{route('admin.pets')}}" class="nav-link text-secondary font-weight-bold">Create a Pet</a>
+                <a href="{{route('admin.categories')}}" class="nav-link text-secondary font-weight-bold">Create a Category</a>
+                <a href="{{route('admin.products')}}" class="nav-link text-secondary font-weight-bold">Create a Product</a>
             </ul>
         </nav>
     </section>
@@ -26,7 +26,7 @@
         </div>
         <livewire:admin.product.products-table />
         <br>
-        <footer class="bg-light d-flex flex-column align-items-center py-3">
+        <footer class="d-flex flex-column align-items-center py-3">
             <div style="width: 100%">
                 <div class="m-auto d-flex justify-content-between py-2">
                     <nav class="d-flex m-auto">
@@ -40,28 +40,8 @@
 
     <!-- Modal for creating a new pet-->
     <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-            <livewire:admin.product.create/>
-        </div>
-    </div>
-
-    <!-- Modal for updating a selected pet-->
-    <div class="modal fade" id="editProductModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Modal body text goes here.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+        <div class="modal-dialog modal-md modal-dialog-centered modal-dialog-scrollable">
+                <livewire:admin.product.create/>
             </div>
         </div>
     </div>

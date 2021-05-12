@@ -4,9 +4,9 @@
     <section>
         <nav class="my-2">
             <ul class="d-flex p-0">
-                <a href="{{route('admin.pets')}}" class="nav-link text-secondary fw-bold">Create a Pet</a>
-                <a href="{{route('admin.categories')}}" class="nav-link text-secondary fw-bold">Create a Category</a>
-                <a href="{{route('admin.products')}}" class="nav-link text-secondary fw-bold">Create a Product</a>
+                <a href="{{route('admin.pets')}}" class="nav-link text-secondary font-weight-bold">Create a Pet</a>
+                <a href="{{route('admin.categories')}}" class="nav-link text-secondary font-weight-bold">Create a Category</a>
+                <a href="{{route('admin.products')}}" class="nav-link text-secondary font-weight-bold">Create a Product</a>
             </ul>
         </nav>
     </section>
