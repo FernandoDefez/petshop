@@ -1,26 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <section>
-        <nav class="my-2">
-            <ul class="d-flex p-0">
-                <a href="{{route('admin.pets')}}" class="nav-link text-secondary font-weight-bold">Create a Pet</a>
-                <a href="{{route('admin.categories')}}" class="nav-link text-secondary font-weight-bold">Create a Category</a>
-                <a href="{{route('admin.products')}}" class="nav-link text-secondary font-weight-bold">Create a Product</a>
-            </ul>
-        </nav>
-    </section>
-
     {{-- Main --}}
     <section class="m-auto" style="width: 100%; height: 100%;">
-        <div class="m-auto my-2 py-4 px-3" style="width: 98%">
+        <div class="m-auto my-2 py-4" style="width: 100%">
             <div class="d-flex mt-0 justify-content-between">
                 <div>
-                    <h3 class="font-weight-bold">Products</h3>
+                    <h3 class="font-weight-bold text-white">Products</h3>
                 </div>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-success font-weight-bold" data-toggle="modal" data-target="#createProductModal">
-                    Create a new product <i class="bi bi-plus"></i>
+                    <i class="bi bi-plus"></i> New product
                 </button>
             </div>
         </div>
@@ -47,7 +37,7 @@
     </div>
 @endsection
 
-@section('myscripts')
+@section('scripts')
     <script type="text/javascript">
         //Actions for creating a new product
         window.livewire.on('product-created-alert', ($message) => {

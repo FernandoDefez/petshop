@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class ProfileController
 {
@@ -13,7 +14,13 @@ class ProfileController
      */
     public function index()
     {
-        //
+        if (auth()->user()){
+            return view('profile', [
+                'user' => User::find(auth()->user()->getAuthIdentifier()),
+                'user_address' => User::find(auth()->user()->getAuthIdentifier())->address()->first()
+            ]);
+        }
+        return redirect()->route('home');
     }
 
     /**

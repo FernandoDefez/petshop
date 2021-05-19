@@ -1,4 +1,4 @@
-<div class="modal-content bg-light shadow-sm">
+<div class="modal-content bg-light shadow-sm px-0">
     <div class="modal-header">
         <h5 class="modal-title" id="createCategoryModalLabel">Create a new category</h5>
         <button type="button" wire:click="resetModal" class="close" data-dismiss="modal" aria-label="Close">
@@ -40,8 +40,8 @@
                 id="CategoryInput"
                 aria-describedby="CategoryInputValidationFeedback"
                 placeholder="Type a category name"
-                required
-            >
+                required>
+                
             @if (strlen($category) >= 3 && strlen($category) <= 20)
                 <div class="valid-feedback"> {{ __('Valid') }} </div>
             @else

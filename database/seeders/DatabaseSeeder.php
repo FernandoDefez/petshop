@@ -16,12 +16,19 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\User::factory(1)->create();
+        $this->call(AddressSeeder::class);
+
 
         \App\Models\Admin::factory(1)->create();
 
-        Storage::deleteDirectory('pets');
+        //Storage::deleteDirectory('pets');
         Storage::makeDirectory('pets');
 
+        $this->call(PetSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(ProductSeeder::class);
+
+        /*
         Storage::deleteDirectory('products');
         Storage::makeDirectory('products');
 
@@ -32,5 +39,7 @@ class DatabaseSeeder extends Seeder
                         \App\Models\Product::factory()->count(10)
                     )
             )->create();
+
+        */
     }
 }

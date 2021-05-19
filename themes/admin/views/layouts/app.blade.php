@@ -10,20 +10,20 @@
     <title>{{ __('Petshop Admin') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('themes/user/js/app.js') }}"></script>
+    <script src="{{ asset('themes/assets/js/app.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 
     <!-- Styles -->
-    <link href="{{ asset('themes/user/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('themes/assets/css/app.css') }}" rel="stylesheet">
     @livewireStyles
 </head>
 
 <style>
-    body {
-        font-family: Bahnschrift;
+    body{
+        font-family: cursive;
     }
 
     .title {
@@ -55,10 +55,10 @@
                     <a id="navbarDropdown" class="nav-link dropdown-toggle text-secondary" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::guard('admin')->user()->name }}
                     </a>
-                    <div class="dropdown-menu position-absolute dropdown-menu-right dark bg-dark" aria-labelledby="navbarDropdown">
-                        <form action="{{ route('admin.logout') }}" method="POST" class="p-3">
+                    <div class="dropdown-menu position-absolute dropdown-menu-right bg-light" aria-labelledby="navbarDropdown">
+                        <form action="{{ route('admin.logout') }}" method="POST" class="px-2">
                             @csrf
-                            <button type="submit" class="btn btn-danger btn-sm font-weight-bold btn-block">{{ __('Logout') }}</button>
+                            <button type="submit" class="btn btn-outline-danger btn-sm font-weight-bold btn-block my-0">{{ __('Logout') }}</button>
                         </form>
                     </div>
                 </li>
@@ -68,11 +68,26 @@
 </nav>
 
 <main class="m-0 col-12 p-4">
+    <section class="m-auto" style="width: 100%; height: 100%;">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 70px">
+                    Create
+                </a>
+                <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{route('admin.pets')}}">  Pet </a>
+                    <a class="dropdown-item" href="{{route('admin.categories')}}">  Category </a>
+                    <a class="dropdown-item" href="{{route('admin.products')}}">  Product </a>
+                </div>
+            </li>
+        </ul>
+    </section>
     @yield('content')
 </main>
 
     @livewireScripts
-    @yield('myscripts')
+    @yield('scripts')
 </body>
 </html>
 

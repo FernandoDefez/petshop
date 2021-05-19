@@ -2,25 +2,15 @@
 
 @section('content')
     {{-- Main --}}
-    <section>
-        <nav class="my-2">
-            <ul class="d-flex p-0">
-                <a href="{{route('admin.pets')}}" class="nav-link text-secondary font-weight-bold">Create a Pet</a>
-                <a href="{{route('admin.categories')}}" class="nav-link text-secondary font-weight-bold">Create a Category</a>
-                <a href="{{route('admin.products')}}" class="nav-link text-secondary font-weight-bold">Create a Product</a>
-            </ul>
-        </nav>
-    </section>
-
     <section class="m-auto" style="width: 100%; height: 100%;">
-        <div class="m-auto my-2 py-4 px-3" style="width: 98%">
+        <div class="m-auto my-2 py-4" style="width: 100%">
             <div class="d-flex mt-0 justify-content-between">
                 <div>
-                    <h3 class="font-weight-bold">Categories</h3>
+                    <h3 class="font-weight-bold text-white">Categories</h3>
                 </div>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-success font-weight-bold" data-toggle="modal" data-target="#createCategoryModal">
-                    Create a new category <i class="bi bi-plus"></i>
+                    <i class="bi bi-plus"></i> New category
                 </button>
             </div>
         </div>
@@ -47,29 +37,10 @@
         </div>
     </div>
 
-    <!-- Modal for updating a selected pet-->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Modal body text goes here.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 @endsection
 
-@section('myscripts')
+@section('scripts')
     <script type="text/javascript">
         //Actions for creating a new category
         window.livewire.on('category-created-alert', ($message) => {

@@ -18,7 +18,7 @@ class CartItemsCounter extends Component
      *
      * This view is located in the following directory resources/views/livewire/
      *
-     * @return view
+     * @return \Illuminate\Contracts\View\View
      */
     public function render()
     {

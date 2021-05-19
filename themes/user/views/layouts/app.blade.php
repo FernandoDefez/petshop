@@ -10,34 +10,34 @@
     <title>{{ __('Petshop') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ url('themes/user/js/app.js') }}" defer></script>
+    <script src="{{ url('themes/assets/js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ url('themes/user/css/app.css') }}" rel="stylesheet">
+    <link href="{{ url('themes/assets/css/app.css') }}" rel="stylesheet">
 </head>
 
 <style type="text/css">
-  body {
-    font-family: Bahnschrift;
-    background: #f1f1f1;
-  }
-  .title {
-    font-size: 24px !important;
-  }
-  .dark{
-      background: #212529 !important;
-  }
+    body{
+        font-family: cursive;
+    }
+
+    .title {
+        font-size: 24px !important;
+    }
+    .dark{
+        /*background: #212529 !important;*/
+        background: #04030C !important;
+    }
 </style>
 
 <body>
-
-  <div class="dark col-12 px-4 py-3">
+  <div class="bg-white col-12 px-4 py-3 shadow-sm">
       <div class="mb-0 d-flex justify-content-between align-items-center">
-          <a class="text-white navbar-brand font-weight-bold title" href="{{ route('home') }}"> {{ __('Petshop') }}</a>
+          <a class="text-white navbar-brand title text-dark" href="{{ route('home') }}"> {{ __('Petshop') }}</a>
           <div class="d-flex align-items-center">
               @guest
                   @if (Route::has('login'))
@@ -50,10 +50,8 @@
           </div>
       </div>
   </div>
-
   <main class="py-4">
       @yield('content')
   </main>
-
 </body>
 </html>

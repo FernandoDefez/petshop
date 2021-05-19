@@ -7,14 +7,14 @@
     <title>{{ __('Petshop') }}</title>
 
     <!-- Scripts -->
-    <script src="{{url('themes/user/js/app.js')}}" defer></script>
+    <script src="{{url('themes/assets/js/app.js')}}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{url('themes/user/css/app.css')}}" rel="stylesheet">
+    <link href="{{url('themes/assets/css/app.css')}}" rel="stylesheet">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -23,9 +23,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
 
     <style>
-        body {
-            background: #f1f1f1;
-            font-family: Bahnschrift;
+        body{
+            font-family: cursive;
         }
 
         .title{
@@ -63,9 +62,9 @@
 </head>
 <body class="bg-light" style="overflow: hidden; width: 100vw; height: 100vh">
     <main class="m-0 p-0 position-relative" style="width: 100vw; height: 100vh">
-        <div class="header position-absolute dark bg-dark col-12 px-4 py-3" style="display: none">
+        <div class="header position-absolute bg-white shadow-sm col-12 px-4 py-3" style="display: none">
             <div class="mb-0 d-flex justify-content-between align-items-center">
-                <a class="text-white navbar-brand font-weight-bold title" href="{{@url('/')}}">
+                <a class="text-white navbar-brand text-dark title" href="{{@url('/')}}">
                     {{ __('Petshop') }}
                 </a>
                 <div class="d-flex align-items-center">
@@ -93,10 +92,10 @@
                                         <div class="rounded position-relative" style="height: 100vh">
                                             <div class="bg-dark position-absolute" style="width: 100%; height: 100vh;">
                                                 <img src="{{asset('storage/pets/'.$pet->img)}}"
-                                                     alt="" style="width: 100%; height: 100vh; object-fit: cover; background-color:rgba(0,0,0,0.7); opacity: 0.5;">
+                                                     alt="" style="width: 100%; height: 100vh; object-fit: cover; background-color:rgba(0,0,0,0.7); opacity: 0.90;">
                                             </div>
                                             <div class="px-5 py-4 position-absolute" style="z-index: 10; top: 0; width: 100%;">
-                                                <h2 class="mb-0"><a class="text-white navbar-brand font-weight-bolder title" href="{{@url('/')}}">Petshop</a></h2>
+                                                <h2 class="mb-0"><a class="text-white navbar-brand title" href="{{@url('/')}}">Petshop</a></h2>
                                             </div>
                                         </div>
                                     </li>
@@ -111,7 +110,7 @@
                 <div class="p-4 m-0">
                     <div class="p-0 py-5 m-auto" style="height: 100%;">
                         <h6 class="px-5"> Hello, dear customer. It is good to have you here! </h6>
-                        <h5 class="font-weight-bold px-5"> {{ __('Log In')}} </h5>
+                        <h5 class="px-5"> {{ __('Log In')}} </h5>
                         <div class="rounded my-0 p-0">
 
                             <form method="POST" action="{{ route('login') }}" class="m-0 row px-5 py-5">
@@ -158,7 +157,7 @@
                                 </div>
                                 <br>
                                 <div class="col-md-12 p-0 mb-4">
-                                    <button class="fs-6 rounded font-weight-bold p-2 btn btn-dark dark btn-sm col-12" type="submit">{{ __('Log In') }}</button>
+                                    <button class="fs-6 rounded p-2 btn btn-primary font-weight-bold btn-sm col-12" type="submit">{{ __('Log In') }}</button>
                                 </div>
                                 <br>
                                 <div class="col-12 p-0">

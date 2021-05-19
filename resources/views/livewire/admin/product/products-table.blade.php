@@ -1,6 +1,6 @@
 <div>
     <div>
-        <div class="scrollspy-example mx-auto mb-4" style="width: 96%; min-height: 50vh; outline: none;" id="products-table">
+        <div class="scrollspy-example mx-auto mb-4" style="width: 100%; min-height: 50vh; outline: none;" id="products-table">
             <div style="overflow-x: scroll">
                 <table class="table table-bordered bg-light">
                     <thead class="" style="background: rgba(240, 240, 240, 0.946);">

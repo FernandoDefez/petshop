@@ -21,7 +21,9 @@ class Product extends Model
         'img',
         'slug',
         'availability',
-        'category_id'
+        'category_id',
+        'created_at',
+        'updated_at'
     ];
 
 

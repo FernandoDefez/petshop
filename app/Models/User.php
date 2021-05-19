@@ -51,4 +51,12 @@ class User extends Authenticatable
           ->withTimestamps();
     }
 
+    /**
+     * Get the address associated with the user.
+     */
+    public function address()
+    {
+        return $this->hasOne(Address::class);
+    }
+
 }

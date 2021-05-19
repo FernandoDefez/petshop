@@ -16,7 +16,9 @@ class Pet extends Model
      */
     protected $fillable = [
         'name',
-        'img'
+        'img',
+        'created_at',
+        'updated_at'
     ];
 
     /**

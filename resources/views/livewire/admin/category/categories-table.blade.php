@@ -1,5 +1,5 @@
 <div>
-    <div class="m-auto mb-2 d-flex flex-wrap" style="width: 98%" id="categories-table">
+    <div class="m-auto mb-2 px-0 d-flex flex-wrap" style="width: 100%" id="categories-table">
         @foreach($categories as $category)
             <div class="col-sm-6 col-md-4 col-lg-3 m-0 mb-4">
                 <div class="card bg-dark">

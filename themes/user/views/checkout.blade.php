@@ -2,11 +2,11 @@
 @section('content')
        <section class="d-flex responsive-section-1 justify-content-between m-0 pt-3 flex-wrap" style="width: 100%; height: 100%">
            <div class="col-md-8" style="height: 100%; margin-bottom: 35px">
-               <h5 class="font-weight-bold"> Payment </h5>
+               <h5> Payment </h5>
                <div class="rounded p-3 bg-white d-flex justify-content-between d-flex flex-wrap shadow-sm" style="margin-top: 2vh;">
                    <div class="col-lg-6 px-0">
                        <div class="mb-0">
-                           <h6 class="font-weight-bold py-1 m-0"> Billing information </h6>
+                           <h6 class="py-1 m-0"> Billing information </h6>
                        </div>
                        <hr>
                        <form class="p-2">
@@ -72,7 +72,7 @@
 
                    <div class="col-lg-5 px-0">
                        <div class="mb-0">
-                           <h6 class="font-weight-bold py-1 m-0"> Payment method </h6>
+                           <h6 class="py-1 m-0"> Payment method </h6>
                        </div>
                        <hr>
                        <div class="col-12 rounded pt-4 px-2">
@@ -82,24 +82,24 @@
                                        <div class="custom-control custom-checkbox mr-sm-2 mb-4 d-flex align-items-center justify-content-between">
                                            <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
                                            <label class="custom-control-label" for="customControlAutosizing">Pay with PayPal</label>
-                                           <img src="{{ asset('assets/paypal.svg') }}" alt=""  style="width: 60px; height: 50px">
+                                           <img src="{{ asset('images/paypal.svg') }}" alt=""  style="width: 60px; height: 50px">
                                        </div>
                                        <div class="custom-control custom-checkbox mr-sm-2 mb-5 d-flex align-items-center justify-content-between">
                                            <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
                                            <label class="custom-control-label" for="customControlAutosizing">Pay with Oxxo</label>
-                                           <img src="{{ asset('assets/oxxo.svg') }}" alt=""  style="width: 45px; height: 35px">
+                                           <img src="{{ asset('images/oxxo.svg') }}" alt=""  style="width: 45px; height: 35px">
                                        </div>
                                        <div class="custom-control custom-checkbox mr-sm-2 mb-5 d-flex align-items-center justify-content-between">
                                            <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
                                            <label class="custom-control-label" for="customControlAutosizing">Pay with Mércado Pago</label>
-                                           <img src="{{ asset('assets/mercadopago.png') }}" alt=""  style="width: 68px; height: 22px">
+                                           <img src="{{ asset('images/mercadopago.png') }}" alt=""  style="width: 68px; height: 22px">
                                        </div>
                                        <div class="custom-control custom-checkbox mr-sm-2 mb-5 d-flex align-items-center justify-content-between">
                                            <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
                                            <label class="custom-control-label" for="customControlAutosizing">Credit / Debit Card</label>
                                            <div class="d-flex justify-content-end">
-                                               <img src="{{ asset('assets/mastercard.svg') }}" alt=""  style="width: 40px; height: 30px">
-                                               <img src="{{ asset('assets/visa.svg') }}" alt=""  style="width: 45px; height: 35px">
+                                               <img src="{{ asset('images/mastercard.svg') }}" alt=""  style="width: 40px; height: 30px">
+                                               <img src="{{ asset('images/visa.svg') }}" alt=""  style="width: 45px; height: 35px">
                                            </div>
                                        </div>
                                    </div>
@@ -111,9 +111,9 @@
            </div>
 
            <div class="col-md-4" style="margin-bottom: 40px">
-               <h5 class="font-weight-bold"> &nbsp; </h5>
+               <h5> &nbsp; </h5>
                <div class="rounded p-3 bg-white shadow-sm" style="margin-top: 2vh;">
-                   <h6 class="font-weight-bold py-1"> Cart summary </h6>
+                   <h6 class="py-1"> Cart summary </h6>
                    <hr>
                    <div class="px-0 d-flex align-items-center justify-content-between mb-3 px-3 py-1">
                        <p class="m-0"> Subtotal </p>
@@ -123,12 +123,12 @@
                        <p class="m-0"> Shipping </p>
                        <p class="m-0"> &dollar; 12.00 </p>
                    </div>
-                   <div class="bg-light px-0 d-flex align-items-center justify-content-between font-weight-bold mb-3 px-3 py-2 rounded">
+                   <div class="bg-light px-0 d-flex align-items-center justify-content-between mb-3 px-3 py-2 rounded">
                        <p class="m-0"> Total </p>
                        <p class="m-0"> &dollar; 12.00 </p>
                    </div>
-                   <div class="bg-light px-0 d-flex align-items-center justify-content-between font-weight-bold mb-3">
-                       <button class="btn btn-primary btn-block font-weight-bold">
+                   <div class="bg-light px-0 d-flex align-items-center justify-content-between mb-3">
+                       <button class="btn btn-primary font-weight-bold btn-block">
                            Checkout
                        </button>
                    </div>

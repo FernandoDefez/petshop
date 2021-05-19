@@ -7,7 +7,7 @@
     <title>{{ __('Petshop') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('themes/user/js/app.js') }}"></script>
+    <script src="{{ asset('themes/assets/js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,14 +20,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 
     <!-- Styles -->
-    <link href="{{ url('themes/user/css/app.css') }}" rel="stylesheet">
+    <link href="{{ url('themes/assets/css/app.css') }}" rel="stylesheet">
 
     @yield('styles-link')
 
     <style>
-        body {
-            font-family: Bahnschrift;
-            background: #f1f1f1;
+        body{
+            font-family: cursive;
+            background: #f9f9f9;
         }
 
         .title {
@@ -54,16 +54,17 @@
             left: 80%;
             transform: translateY(-50%);
             transform: translateX(-50%);
-            height: 24px;
-            width: 24px;
+            height: 20px;
+            width: 20px;
             border-radius: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
         }
         .bag-quantifier p{
-            font-size: 14px !important;
+            font-size: 10px !important;
             color: white;
+            font-weight: 500;
             margin-bottom: 0;
             font-style: normal;
             margin: 0;
@@ -91,8 +92,8 @@
     @livewireStyles
 </head>
 <body style="overflow-x: hidden;">
-    <header class="dark py-2">
-        <nav class="navbar navbar-expand-lg navbar-dark dark m-auto px-1" style="width: 95%; height: auto">
+    <header class="bg-white py-2 shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-dark m-auto px-1" style="width: 95%; height: auto">
             <div class="d-flex col-12 justify-content-between px-2">
                 @guest
                 @else
@@ -101,9 +102,9 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <h2 class="m-0 text-white">
-                                    <i class="bi bi-person-fill"></i>
-                                </h2>
+                                <h3 class="m-0 text-dark">
+                                    <i class="bi bi-person"></i>
+                                </h3>
                             </a>
                             <div class="position-absolute dropdown-menu dropdown-menu-left"
                                 aria-labelledby="navbarDropdown">
@@ -123,7 +124,7 @@
                 </div>
                 @endguest
 
-                <a class="navbar-brand text-center title" href="{{ route('home') }}" style="font-size: 22px; font-weight: 900;">{{ __('Petshop')}}</a>
+                <a class="navbar-brand text-center title text-dark mr-0" href="{{ route('home') }}">{{ __('Petshop')}}</a>
 
                 <div class="d-flex">
                     @guest
@@ -139,19 +140,22 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <h2 class="m-0 text-white">
-                                    <i class="bi bi-bag-fill">
+                                <h3 class="m-0 text-dark">
+                                    <i class="bi bi-bag">
+                                        @guest
+                                        @else
                                         <span class="bag-quantifier position-absolute bg-primary">
                                             <livewire:cart-items-counter />
                                         </span>
+                                        @endguest
                                     </i>
-                                </h2>
+                                </h3>
                             </a>
                             <div class="position-absolute dropdown-menu dropdown-menu-right"
                                 aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item d-flex">Items: <livewire:cart-items-counter /></a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('cart') }}">See cart</a>
+                                <a class="dropdown-item" href="{{ route('cart') }}">View cart</a>
                             </div>
                         </li>
                     </ul>

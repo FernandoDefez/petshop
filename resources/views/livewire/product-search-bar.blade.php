@@ -6,7 +6,7 @@
                 @if (!empty($query))
                     @if (!empty($products))
                         <div class="dropdown-menu dropdown-menu-lg-right shadow-sm" aria-labelledby="search-dropdown" style="display: block; min-width:100%">
-                            <h5 class="dropdown-header text-dark font-weight-bold px-3">Search Results</h5>
+                            <h5 class="dropdown-header text-dark px-3">Search Results</h5>
                             @foreach($products as $product)
                                 <div class="dropdown-item col-12 d-flex align-items-center px-1">
                                     <div class="col-4 p-0 m-auto" style="height: 80px; width: 110px">

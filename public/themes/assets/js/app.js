@@ -1834,10 +1834,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./themes/admin/js/app.js":
-/*!********************************!*\
-  !*** ./themes/admin/js/app.js ***!
-  \********************************/
+/***/ "./themes/assets/js/app.js":
+/*!*********************************!*\
+  !*** ./themes/assets/js/app.js ***!
+  \*********************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 /**
@@ -1845,14 +1845,14 @@ module.exports = {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(/*! ./bootstrap */ "./themes/admin/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./themes/assets/js/bootstrap.js");
 
 /***/ }),
 
-/***/ "./themes/admin/js/bootstrap.js":
-/*!**************************************!*\
-  !*** ./themes/admin/js/bootstrap.js ***!
-  \**************************************/
+/***/ "./themes/assets/js/bootstrap.js":
+/*!***************************************!*\
+  !*** ./themes/assets/js/bootstrap.js ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
@@ -34438,10 +34438,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
-/***/ "./themes/admin/sass/app.scss":
-/*!************************************!*\
-  !*** ./themes/admin/sass/app.scss ***!
-  \************************************/
+/***/ "./themes/assets/sass/app.scss":
+/*!*************************************!*\
+  !*** ./themes/assets/sass/app.scss ***!
+  \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -37446,8 +37446,8 @@ process.umask = function() { return 0; };
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./themes/admin/js/app.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./themes/admin/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./themes/assets/js/app.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./themes/assets/sass/app.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

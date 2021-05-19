@@ -1,5 +1,5 @@
 <div>
-    <div class="m-auto mb-2 d-flex flex-wrap" style="width: 98%" id="pets-table">
+    <div class="m-auto mb-2 d-flex flex-wrap" style="width: 100%" id="pets-table">
         @foreach($pets as $pet)
         <div class="col-sm-6 col-md-4 col-lg-3 m-0 mb-5 shadow-sm">
             <div class="card bg-dark">

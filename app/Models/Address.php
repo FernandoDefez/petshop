@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Address extends Model
 {
     use HasFactory;
 
@@ -15,26 +15,22 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'pet_id',
+        'city',
+        'suburb',
+        'add1',
+        'add2',
+        'zip',
+        'phone_number',
+        'user_id',
         'created_at',
         'updated_at'
     ];
 
-
     /**
-     * Many categories to one pet Relationship
+     * Get the user that owns the phone.
      */
-    public function pet()
+    public function user()
     {
-        return $this->belongsTo(Pet::class);
-    }
-
-    /**
-     * One category to many products Relationship
-     */
-    public function products()
-    {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(User::class);
     }
 }

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CartController;
 
 /*
@@ -22,10 +24,13 @@ use App\Http\Controllers\CartController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('cart', function (){ return view('cart'); })->name('cart');
+Route::get('cart', [CartController::class, 'index'])->name('cart');
 Route::post('cart', [CartController::class, 'store'])->name('cart');
 
-Route::get('profile', function (){ return view('profile');})->name('profile');
+Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+Route::post('address', [AddressController::class, 'store'])->name('address');
+
+Route::get('logout', function (){ return redirect(''); })->name('logout');
 
 Route::get('checkout', function (){ return view('checkout'); })->name('checkout');
 
