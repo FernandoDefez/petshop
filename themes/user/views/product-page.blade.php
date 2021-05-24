@@ -71,7 +71,7 @@
                                     <div class="rounded position-relative" style="height: 200px;">
                                         <div class="bg-dark position-absolute" style="width: 100%; height: 100%;">
                                             <img src="{{ asset('storage/pets/' . $pet->img) }}" alt=""
-                                                style="width: 100%; height: 100%; object-fit: cover; background-color:rgba(0,0,0,0.7); opacity: 0.5;">
+                                                style="width: 100%; height: 100%; object-fit: cover; background-color:rgba(0,0,0,0.7); opacity: 0.90;">
                                         </div>
                                     </div>
                                 </li>
@@ -151,27 +151,37 @@
                         </div>
                         <div class="p-0 mt-2">
                             <div class="d-flex flex-wrap justify-content-start" style="width: 100%">
-                                <article class="d-flex align-items-end my-2 px-2 product bg-white shadow-sm"
+                                <article class="d-flex align-items-end my-2 px-2 product"
                                     style="width: 100%;">
                                     <div class="d-flex flex-wrap" style="width: 100%">
-                                        <div class=" position-relative product-img"
+                                        <div class="position-relative product-img"
                                             style="width: 24%; border-top-left-radius: 5px; border-bottom-left-radius: 5px">
-                                            <div class="p-0 d-flex align-items-center" style="width: 100%; height: 100%">
+                                            <div class="px-3 py-2  d-flex align-items-center" style="width: 100%; height: 100%">
                                                 <img src="{{ asset('storage/products/' . $product->img) }}"
                                                     class="m-auto d-block" style="height: 220px; width: 100%" alt="">
                                             </div>
                                         </div>
-                                        <div class="d-flex align-items-end product-desc p-4"
+                                        <div class="d-flex align-items-end product-desc shadow-sm bg-white p-4"
                                             style="width: 76%; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
                                             <div class="p-1 py-3 d-flex flex-column col-12">
-                                                <h4 class="mb-3" style="width: 100%">
+                                                <h4 class="mb-3 font-weight-bold text-dark" style="width: 100%">
                                                     {{ ucfirst($product->name) }} </h4>
+                                                <h6>
+                                                    @if ($product->availability == 0)
+                                                        <span class="badge badge-danger">
+                                                            {{ __('Out of stock') }}
+                                                        </span>
+                                                    @endif
+                                                    @if ($product->availability > 2)
+                                                        <span class="badge badge-success">
+                                                            {{ __('In stock') }}
+                                                        </span>
+                                                    @endif
+                                                </h6>
                                                 <p class="my-0 col-12 text-secondary px-0">
-                                                    {{ ucfirst($product->description) }}
                                                     {{ ucfirst($product->description) }}
                                                 </p>
                                                 <br>
-
                                                 <div class="d-flex justify-content-between align-items-center"
                                                     style="width: 100%">
                                                     <h4 class="mb-0" style="width: 50%;">
@@ -179,7 +189,7 @@
                                                     @guest
                                                         <div class="bg-white px-3 add-to-cart position-relative">
                                                             <a href=""
-                                                                class="btn btn-primary btn-sm btn-block">
+                                                                class="btn btn-primary font-weight-bold btn-sm btn-block">
                                                                 Add to cart
                                                             </a>
                                                             <div class="p-0 position-absolute w-100 d-none align-items-center
@@ -196,16 +206,31 @@
                                                             </div>
                                                         </div>
                                                     @else
-                                                        <div class="bg-white px-3">
-                                                            <form action="{{ route('cart') }}" method="post" class="m-0 p-0">
-                                                                @csrf
-                                                                <input type="number" class="d-none" name="product_id"
-                                                                    value="{{ $product->id }}" />
-                                                                <input type="submit"
-                                                                    class="btn btn-primary font-weight-bold btn-sm btn-block"
-                                                                    value="Add to cart">
-                                                            </form>
-                                                        </div>
+                                                        @if ($product->availability == 0)
+                                                            <div class="bg-white px-3">
+                                                                <form action="{{ route('cart') }}" method="post" class="m-0 p-0">
+                                                                    @csrf
+                                                                    <input type="number" class="d-none" name="product_id"
+                                                                        value="{{ $product->id }}"/>
+                                                                    <input type="submit"
+                                                                        class="btn btn-primary font-weight-bold btn-sm btn-block"
+                                                                        value="Add to cart" disabled>
+                                                                </form>
+                                                            </div>
+                                                        @else
+                                                            <div class="bg-white px-3">
+                                                                <form action="{{ route('cart') }}" method="post" class="m-0 p-0">
+                                                                    @csrf
+                                                                    <input type="number" class="d-none" name="product_id"
+                                                                        value="{{ $product->id }}" />
+                                                                    <input type="number" class="d-none" name="product_price"
+                                                                           value="{{ $product->price }}" />
+                                                                    <input type="submit"
+                                                                        class="btn btn-primary font-weight-bold btn-sm btn-block"
+                                                                        value="Add to cart">
+                                                                </form>
+                                                            </div>
+                                                        @endif
                                                     @endguest
                                                 </div>
                                             </div>
@@ -262,7 +287,7 @@
                                                                 <div
                                                                     class="card-footer bg-white px-3 add-to-cart position-relative">
                                                                     <a href=""
-                                                                        class="btn btn-primary btn-sm btn-block">
+                                                                        class="btn btn-primary font-weight-bold btn-sm btn-block">
                                                                         Add to cart
                                                                     </a>
                                                                     <div class="p-0 position-absolute w-100 d-none align-items-center justify-content-around add-to-cart-req"
@@ -278,17 +303,33 @@
                                                                     </div>
                                                                 </div>
                                                             @else
-                                                                <div class="card-footer bg-white px-3">
-                                                                    <form action="{{ route('cart') }}" method="post"
-                                                                        class="m-0 p-0">
-                                                                        @csrf
-                                                                        <input type="number" class="d-none" name="product_id"
-                                                                            value="{{ $item->id }}" />
-                                                                        <input type="submit"
-                                                                            class="btn btn-primary btn-sm btn-block"
-                                                                            value="Add to cart">
-                                                                    </form>
-                                                                </div>
+                                                                @if ($item->availability == 0)
+                                                                    <div class="card-footer bg-white px-3">
+                                                                        <form action="{{ route('cart') }}" method="post"
+                                                                            class="m-0 p-0">
+                                                                            @csrf
+                                                                            <input type="number" class="d-none" name="product_id"
+                                                                                value="{{ $item->id }}" />
+                                                                            <input type="submit"
+                                                                                class="btn btn-primary font-weight-bold btn-sm btn-block"
+                                                                                value="Add to cart" disabled>
+                                                                        </form>
+                                                                    </div>
+                                                                @else
+                                                                    <div class="card-footer bg-white px-3">
+                                                                        <form action="{{ route('cart') }}" method="post"
+                                                                            class="m-0 p-0">
+                                                                            @csrf
+                                                                            <input type="number" class="d-none" name="product_id"
+                                                                                value="{{ $item->id }}" />
+                                                                            <input type="number" class="d-none" name="product_price"
+                                                                                   value="{{ $product->price }}" />
+                                                                            <input type="submit"
+                                                                                class="btn btn-primary font-weight-bold btn-sm btn-block"
+                                                                                value="Add to cart">
+                                                                        </form>
+                                                                    </div>
+                                                                @endif
                                                             @endguest
                                                         </li>
                                                     @endforeach

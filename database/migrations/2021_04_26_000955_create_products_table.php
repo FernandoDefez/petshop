@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->float('price');
+            $table->float('price')->nullable(false);
             $table->string('slug')->unique();
             $table->string('img')->default('');
             $table->integer('availability')->unsigned()->default(20);

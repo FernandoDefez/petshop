@@ -34,13 +34,12 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        $user = User::find(auth()->user()->getAuthIdentifier());
 
-      $user = User::find(auth()->user()->getAuthIdentifier());
+        $user->products()->detach($request->product_id);
+        $user->products()->attach($request->product_id, ['total_price' => $request->product_price]);
 
-      $user->products()->detach($request->product_id);
-      $user->products()->attach($request->product_id);
-
-      return redirect()->route('cart');
+        return redirect()->route('cart');
     }
 
     /**

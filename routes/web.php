@@ -33,6 +33,7 @@ Route::post('address', [AddressController::class, 'store'])->name('address');
 Route::get('logout', function (){ return redirect(''); })->name('logout');
 
 Route::get('checkout', function (){ return view('checkout'); })->name('checkout');
+Route::post('checkout', function (){ return view('checkout'); })->name('checkout');
 
 Route::get('products/{pet}/{category}', [ShopController::class, 'index'])->name('products');
 

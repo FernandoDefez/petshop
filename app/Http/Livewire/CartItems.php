@@ -21,9 +21,10 @@ class CartItems extends Component
      *
      * @var item_id
      */
-    public function increment($item_id)
+    public function increment($item_id, $item_price)
     {
         Cart::where('id', '=', $item_id)->increment('quantity');
+        Cart::where('id', '=', $item_id)->increment('total_price', $item_price);
         $this->render();
     }
 
@@ -35,12 +36,13 @@ class CartItems extends Component
      * @var product_id
      * @var quantity
      */
-    public function decrement($item_id, $product_id, $quantity)
+    public function decrement($item_id, $product_id, $quantity, $item_price)
     {
         if($quantity == 1){
             $this->destroy($product_id);
         }else{
             Cart::where('id', '=', $item_id)->decrement('quantity');
+            Cart::where('id', '=', $item_id)->decrement('total_price', $item_price);
         }
         $this->render();
     }
@@ -73,6 +75,7 @@ class CartItems extends Component
             $this->items = Product::select([
                 Product::raw('carts.id as item_id'),
                 'carts.quantity',
+                'carts.total_price',
                 'products.id',
                 'products.img',
                 'products.name',
@@ -84,7 +87,7 @@ class CartItems extends Component
                 ->where('carts.user_id', '=', auth()->user()->getAuthIdentifier())->get();
 
             foreach ($this->items as $item){
-                $this->subtotal = $this->subtotal + ($item->quantity * $item->price);
+                $this->subtotal = $this->subtotal + $item->total_price;
             }
 
             return view('livewire.cart-items', compact($this->items, $this->subtotal, $this->total = $this->subtotal + $this->shippingCost));

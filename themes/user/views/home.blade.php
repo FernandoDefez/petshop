@@ -189,7 +189,7 @@
                                         </div>
                                         @guest
                                             <div class="card-footer bg-white px-3 add-to-cart position-relative">
-                                                <a href="#" class="btn btn-primary btn-sm btn-block">
+                                                <a href="#" class="btn btn-primary font-weight-bold btn-sm btn-block">
                                                     Add to cart
                                                 </a>
                                                 <div class="p-0 position-absolute w-100 d-none align-items-center
@@ -204,16 +204,29 @@
                                                 </div>
                                             </div>
                                         @else
+                                            @if ($product->availability <= 0)
+                                            <div class="card-footer bg-white px-3">
+                                                <form class="m-0 p-0">
+                                                    <button class="btn btn-primary font-weight-bold btn-sm btn-block"
+                                                        value="Add to cart" disabled>
+                                                        Add to cart
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            @else
                                             <div class="card-footer bg-white px-3">
                                                 <form action="{{ route('cart') }}" method="post" class="m-0 p-0">
                                                     @csrf
                                                     <input type="number" class="d-none" name="product_id"
                                                         value="{{ $product->id }}" />
+                                                    <input type="number" class="d-none" name="product_price"
+                                                           value="{{ $product->price }}" />
                                                     <input type="submit"
                                                         class="btn btn-primary font-weight-bold btn-sm btn-block"
                                                         value="Add to cart">
                                                 </form>
                                             </div>
+                                            @endif
                                         @endguest
                                     </article>
                                 @empty
