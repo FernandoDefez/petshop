@@ -25,9 +25,6 @@
         font-family: cursive;
     }
 
-    .title {
-        font-size: 24px !important;
-    }
     .dark{
         /*background: #212529 !important;*/
         background: #04030C !important;
@@ -37,15 +34,12 @@
 <body>
   <div class="bg-white col-12 px-4 py-3 shadow-sm">
       <div class="mb-0 d-flex justify-content-between align-items-center">
-          <a class="text-white navbar-brand title text-dark" href="{{ route('home') }}"> {{ __('Petshop') }}</a>
+          <a class="navbar-brand text-center font-weight-bold text-dark m-0 p-0 h-100" href="{{ route('home') }}">{{ __('PETSHOP')}}</a>
           <div class="d-flex align-items-center">
               @guest
                   @if (Route::has('login'))
-                      <a class="nav-link text-secondary" href="{{ route('login') }}">{{ __('Login') }}</a>
+                      <a class="nav-link text-secondary" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                   @endif
-                      @if (Route::has('register'))
-                          <a class="nav-link text-secondary" href="{{ route('register') }}">{{ __('Register') }}</a>
-                      @endif
               @endguest
           </div>
       </div>

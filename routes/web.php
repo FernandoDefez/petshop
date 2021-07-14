@@ -6,6 +6,8 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,19 +26,21 @@ use App\Http\Controllers\CartController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('cart', [CartController::class, 'index'])->name('cart');
-Route::post('cart', [CartController::class, 'store'])->name('cart');
+Route::get('/cart', [CartController::class, 'index'])->middleware('auth')->name('cart');
+Route::get('/cart/view', [CartController::class, 'view'])->middleware('auth')->name('cart');
+Route::post('/cart', [CartController::class, 'store'])->middleware('auth')->name('cart');
 
-Route::get('profile', [ProfileController::class, 'index'])->name('profile');
-Route::post('address', [AddressController::class, 'store'])->name('address');
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name('profile');
 
-Route::get('logout', function (){ return redirect(''); })->name('logout');
+Route::get('/logout', function (){ return redirect('home'); })->name('logout');
 
-Route::get('checkout', function (){ return view('checkout'); })->name('checkout');
-Route::post('checkout', function (){ return view('checkout'); })->name('checkout');
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
-Route::get('products/{pet}/{category}', [ShopController::class, 'index'])->name('products');
+Route::get('/products/{pet}/{category}', [ShopController::class, 'index'])->name('products');
 
-Route::get('product/{product}', [ShopController::class, 'show'])->name('product');
+Route::get('/product/{product}', [ShopController::class, 'show'])->name('product');
+
+Route::get('/paypal/payment', [PaymentController::class, 'paypalPaymentRequest'])->middleware('auth')->name('paypal.payment');
+Route::get('/paypal/checkout/{status}', [PaymentController::class, 'paypalCheckout'])->middleware('auth')->name('paypal.checkout');
 
 require __DIR__ . '/admin.php';

@@ -27,75 +27,24 @@
                 flex-direction: column !important;
             }
         }
-
     </style>
 @endsection
 
 @section('content')
-    <section class="d-flex responsive-section-1 justify-content-between m-0 pt-3" style="width: 100%; height: 100%">
-        <div class="col-sm-8" style="height: 100%; margin-bottom: 35px">
-            <h5> Home </h5>
-            <div class="rounded p-3 bg-white d-flex flex-column justify-content-between shadow-sm"
-                style="margin-top: 2vh; height: 185px">
-                <h6 class="py-1"> Welcome </h6>
-                <p>
-                    Hello,
-                    @guest
-                        {{ __('dear customer.') }}
-                    @else
-                        {{ 'dear ' . Auth::user()->name . '. ' }}
-                    @endguest Welcome to this page where you can find as many products as you want for your pets.
-                </p>
-                <div class="d-flex">
-                    @guest
-                        @if (Route::has('login'))
-                            <a href="{{ route('login') }}" class="btn btn-success btn-sm"> {{ __('Login') }} </a>
-                        @endif
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="btn btn-light btn-sm mx-3">
-                                {{ __('Register') }} </a>
-                        @endif
-                    @else
-                    @endguest
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4" style="margin-bottom: 40px">
-            <h5> Pets </h5>
-            <div class="rounded shadow-sm" style="margin-top: 2vh; height: 185px">
-                <div class="splide rounded position-relative overflow-hidden" id="splide" style="height: 100%">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            @foreach ($pets as $pet)
-                                <li class="splide__slide" style="height: 200px;">
-                                    <div class="rounded position-relative" style="height: 200px;">
-                                        <div class="bg-dark position-absolute" style="width: 100%; height: 100%;">
-                                            <img src="{{ asset('storage/pets/' . $pet->img) }}" alt=""
-                                                style="width: 100%; height: 100%; object-fit: cover; background-color:rgba(0,0,0,0.7); opacity: 0.90;">
-                                        </div>
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <br>
     <section class="responsive-section-2 d-flex justify-content-between m-0 p-0" style="width: 100%; height: 100%">
         <div class="col-md-2" style="height: 100%; margin-bottom: 35px">
             <div class="d-flex justify-content-between align-items-center py-3 mb-2">
-                <h5 class="mb-0"> {{ __('Categories') }} </h5>
+                <h5 class="mb-0"> {{ __('Categorías') }} </h5>
             </div>
             <div class="accordion" id="accordionExample">
                 @foreach ($pets as $pet)
                     <div class="card">
                         <div class="card-header bg-white p-1" id="heading{{ $pet->id }}">
                             <h2 class="mb-0">
-                                <button class="btn text-primary btn-block text-left" type="button"
-                                    data-toggle="collapse" data-target="#collapse{{ $pet->id }}" @if ($pet->id == 1) aria-expanded="true" @else aria-expanded="false" @endif aria-controls="collapse{{ $pet->id }}">
-                                    {{ strtolower($pet->name) }}
+                                <button class="btn text-primary btn-block text-left d-flex justify-content-between" type="button"
+                                        data-toggle="collapse" data-target="#collapse{{ $pet->id }}" @if ($pet->id == 1) aria-expanded="true" @else aria-expanded="false" @endif aria-controls="collapse{{ $pet->id }}">
+                                    <p class="p-0 m-0">{{ strtolower($pet->name) }}</p>
+                                    <i class="bi bi-chevron-down"></i>
                                 </button>
                             </h2>
                         </div>
@@ -119,7 +68,7 @@
 
         <div class="col-md-10" style="margin-bottom: 35px">
             <div class="d-flex justify-content-between align-items-center py-2">
-                <h5 class="mb-0"> {{ __('Product') }} </h5>
+                <h5 class="mb-0"> {{ __('Producto Seleccionado') }} </h5>
                 <livewire:product-search-bar />
             </div>
 
@@ -169,12 +118,12 @@
                                                 <h6>
                                                     @if ($product->availability == 0)
                                                         <span class="badge badge-danger">
-                                                            {{ __('Out of stock') }}
+                                                            {{ __('Sin stock') }}
                                                         </span>
                                                     @endif
-                                                    @if ($product->availability > 2)
+                                                    @if ($product->availability > 0)
                                                         <span class="badge badge-success">
-                                                            {{ __('In stock') }}
+                                                            {{ __('En stock') }}
                                                         </span>
                                                     @endif
                                                 </h6>
@@ -189,33 +138,31 @@
                                                     @guest
                                                         <div class="bg-white px-3 add-to-cart position-relative">
                                                             <a href=""
-                                                                class="btn btn-primary font-weight-bold btn-sm btn-block">
-                                                                Add to cart
+                                                                class="btn btn-primary font-weight-bold btn-block">
+                                                                Añadir al carrito
                                                             </a>
                                                             <div class="p-0 position-absolute w-100 d-none align-items-center
                                                                            justify-content-around add-to-cart-req"
-                                                                style="box-sizing: border-box; top: -6px">
+                                                                style="box-sizing: border-box; top: 0px; font-size: 12px; ">
                                                                 <a class="nav-link text-primary p-0 py-2"
                                                                     href="{{ route('login') }}">
-                                                                    Login
+                                                                    Iniciar Sesión
                                                                 </a>
                                                                 <a class="nav-link text-secondary p-0"
                                                                     href=" {{ route('register') }} ">
-                                                                    Register
+                                                                    Registrarse
                                                                 </a>
                                                             </div>
                                                         </div>
                                                     @else
                                                         @if ($product->availability == 0)
                                                             <div class="bg-white px-3">
-                                                                <form action="{{ route('cart') }}" method="post" class="m-0 p-0">
-                                                                    @csrf
-                                                                    <input type="number" class="d-none" name="product_id"
-                                                                        value="{{ $product->id }}"/>
-                                                                    <input type="submit"
-                                                                        class="btn btn-primary font-weight-bold btn-sm btn-block"
-                                                                        value="Add to cart" disabled>
-                                                                </form>
+                                                                <div class="m-0 p-0">
+                                                                    <button  href="{{ redirect()->route('home') }}"
+                                                                        class="btn btn-primary font-weight-bold btn-block" disabled>
+                                                                        Añadir al carrito
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         @else
                                                             <div class="bg-white px-3">
@@ -226,8 +173,8 @@
                                                                     <input type="number" class="d-none" name="product_price"
                                                                            value="{{ $product->price }}" />
                                                                     <input type="submit"
-                                                                        class="btn btn-primary font-weight-bold btn-sm btn-block"
-                                                                        value="Add to cart">
+                                                                        class="btn btn-primary font-weight-bold btn-block"
+                                                                        value="Añadir al carrito">
                                                                 </form>
                                                             </div>
                                                         @endif
@@ -244,7 +191,7 @@
             </div>
             <br>
             <div class="col-12 d-flex justify-content-end">
-                <a href="{{ route('home') }}" class="text-decoration-none">&leftarrow; Continue Shopping</a>
+                <a href="{{ route('home') }}" class="text-decoration-none">&leftarrow; Seguir comprando</a>
             </div>
             <br>
             <hr>
@@ -252,7 +199,7 @@
             {{-- Featured products carousel --}}
             <div class="justify-content-between m-0 p-0" style="width: 100%;">
                 <div class="col-12 px-0">
-                    <h5 class="mb-3"> You may also like </h5>
+                    <h5 class="mb-3"> También te puede interesar </h5>
                     <div class="light rounded p-0" style="min-height: 200px">
                         <div class="justify-content-between m-0 p-0" style="width: 100%; height: 100%">
                             <div class="col-12 px-0" style="height: 100%;">
@@ -287,18 +234,18 @@
                                                                 <div
                                                                     class="card-footer bg-white px-3 add-to-cart position-relative">
                                                                     <a href=""
-                                                                        class="btn btn-primary font-weight-bold btn-sm btn-block">
-                                                                        Add to cart
+                                                                        class="btn btn-primary font-weight-bold btn-block">
+                                                                        Añadir al carrito
                                                                     </a>
                                                                     <div class="p-0 position-absolute w-100 d-none align-items-center justify-content-around add-to-cart-req"
-                                                                        style="box-sizing: border-box">
+                                                                        style="box-sizing: border-box; font-size: 12px;">
                                                                         <a class="nav-link text-primary p-0 py-2"
                                                                             href="{{ route('login') }}">
-                                                                            Login
+                                                                            Iniciar Sesión
                                                                         </a>
                                                                         <a class="nav-link text-secondary p-0"
                                                                             href=" {{ route('register') }} ">
-                                                                            Register
+                                                                            Registrarse
                                                                         </a>
                                                                     </div>
                                                                 </div>
@@ -311,7 +258,7 @@
                                                                             <input type="number" class="d-none" name="product_id"
                                                                                 value="{{ $item->id }}" />
                                                                             <input type="submit"
-                                                                                class="btn btn-primary font-weight-bold btn-sm btn-block"
+                                                                                class="btn btn-primary font-weight-bold btn-block"
                                                                                 value="Add to cart" disabled>
                                                                         </form>
                                                                     </div>
@@ -325,8 +272,8 @@
                                                                             <input type="number" class="d-none" name="product_price"
                                                                                    value="{{ $product->price }}" />
                                                                             <input type="submit"
-                                                                                class="btn btn-primary font-weight-bold btn-sm btn-block"
-                                                                                value="Add to cart">
+                                                                                class="btn btn-primary font-weight-bold btn-block"
+                                                                                value="Añadir al carro">
                                                                         </form>
                                                                     </div>
                                                                 @endif

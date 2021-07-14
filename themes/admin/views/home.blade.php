@@ -7,7 +7,7 @@
         <p class="lead">This is a simple dashboard, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
         <hr class="my-4">
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="{{ route('home') }}" role="button">Visit the shop</a>
+        <a class="btn btn-primary btn-lg" href="{{ route('home') }}" role="button">Visit online shop</a>
     </div>
     <br>
     <section>

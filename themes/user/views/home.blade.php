@@ -1,5 +1,6 @@
 @extends('layouts.header')
 
+@section('style')
 <style>
     .product {
         width: 18.3%;
@@ -44,74 +45,23 @@
     }
 
 </style>
-@section('style')
 @endsection
 
 @section('content')
-    <section class="d-flex responsive-section-1 justify-content-between m-0 pt-3" style="width: 100%; height: 100%">
-        <div class="col-sm-8" style="height: 100%; margin-bottom: 35px">
-            <h5 class=""> Home </h5>
-            <div class="rounded p-3 bg-white d-flex flex-column justify-content-between shadow-sm"
-                style="margin-top: 2vh; height: 185px">
-                <h6 class="py-1"> Welcome </h6>
-                <p>
-                    Hello,
-                    @guest
-                        {{ __('dear customer.') }}
-                    @else
-                        {{ 'dear ' . Auth::user()->name . '. ' }}
-                    @endguest Welcome to this page where you can find as many products as you want for your pets.
-                </p>
-                <div class="d-flex">
-                    @guest
-                        @if (Route::has('login'))
-                            <a href="{{ route('login') }}" class="btn btn-success btn-sm"> {{ __('Login') }} </a>
-                        @endif
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="btn btn-light mx-3 btn-sm">
-                                {{ __('Register') }} </a>
-                        @endif
-                    @else
-                    @endguest
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4" style="margin-bottom: 40px">
-            <h5 class=""> Pets </h5>
-            <div class="rounded shadow-sm" style="margin-top: 2vh; height: 185px">
-                <div class="splide rounded position-relative overflow-hidden" id="splide" style="height: 100%">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            @foreach ($pets as $pet)
-                                <li class="splide__slide" style="height: 200px;">
-                                    <div class="rounded position-relative" style="height: 200px;">
-                                        <div class="bg-dark position-absolute" style="width: 100%; height: 100%;">
-                                            <img src="{{ asset('storage/pets/' . $pet->img) }}" alt=""
-                                                style="width: 100%; height: 100%; object-fit: cover; background-color:rgba(0,0,0,0.7); opacity: 0.90;">
-                                        </div>
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <br>
     <section class="responsive-section-2 d-flex justify-content-between m-0 p-0" style="width: 100%; height: 100%">
         <div class="col-md-2" style="height: 100%; margin-bottom: 35px">
             <div class="d-flex justify-content-between align-items-center py-3 mb-2">
-                <h5 class="mb-0"> {{ __('Categories') }} </h5>
+                <h5 class="mb-0"> {{ __('Categorías') }} </h5>
             </div>
             <div class="accordion" id="accordionExample">
                 @foreach ($pets as $pet)
                     <div class="card">
                         <div class="card-header bg-white p-1" id="heading{{ $pet->id }}">
                             <h2 class="mb-0">
-                                <button class="btn text-primary btn-block text-left" type="button"
+                                <button class="btn text-primary btn-block text-left d-flex justify-content-between" type="button"
                                     data-toggle="collapse" data-target="#collapse{{ $pet->id }}" @if ($pet->id == 1) aria-expanded="true" @else aria-expanded="false" @endif aria-controls="collapse{{ $pet->id }}">
-                                    {{ strtolower($pet->name) }}
+                                    <p class="p-0 m-0">{{ strtolower($pet->name) }}</p>
+                                    <i class="bi bi-chevron-down"></i>
                                 </button>
                             </h2>
                         </div>
@@ -135,7 +85,7 @@
 
         <div class="col-md-10" style="margin-bottom: 35px">
             <div class="d-flex justify-content-between align-items-center py-2">
-                <h5 class="mb-0"> {{ __('Products') }} </h5>
+                <h5 class="mb-0"> {{ __('Productos') }} </h5>
                 <livewire:product-search-bar />
             </div>
             <div class="pt-2 mt-0 px-0" style="min-height: 200px">
@@ -189,17 +139,17 @@
                                         </div>
                                         @guest
                                             <div class="card-footer bg-white px-3 add-to-cart position-relative">
-                                                <a href="#" class="btn btn-primary font-weight-bold btn-sm btn-block">
-                                                    Add to cart
+                                                <a href="#" class="btn btn-primary font-weight-bold btn-block">
+                                                    Añadir al carrito
                                                 </a>
                                                 <div class="p-0 position-absolute w-100 d-none align-items-center
                                                              justify-content-around add-to-cart-req"
-                                                    style="box-sizing: border-box">
+                                                    style="box-sizing: border-box; font-size: 12px;">
                                                     <a class="nav-link text-primary p-0 py-2" href="{{ route('login') }}">
-                                                        Login
+                                                        Iniciar sesión
                                                     </a>
                                                     <a class="nav-link text-secondary p-0" href=" {{ route('register') }} ">
-                                                        Register
+                                                        Registrarse
                                                     </a>
                                                 </div>
                                             </div>
@@ -207,9 +157,9 @@
                                             @if ($product->availability <= 0)
                                             <div class="card-footer bg-white px-3">
                                                 <form class="m-0 p-0">
-                                                    <button class="btn btn-primary font-weight-bold btn-sm btn-block"
+                                                    <button class="btn btn-primary font-weight-bold btn-block"
                                                         value="Add to cart" disabled>
-                                                        Add to cart
+                                                        Añadir al carrito
                                                     </button>
                                                 </form>
                                             </div>
@@ -222,8 +172,8 @@
                                                     <input type="number" class="d-none" name="product_price"
                                                            value="{{ $product->price }}" />
                                                     <input type="submit"
-                                                        class="btn btn-primary font-weight-bold btn-sm btn-block"
-                                                        value="Add to cart">
+                                                        class="btn btn-primary font-weight-bold btn-block"
+                                                        value="Añadir al carrito">
                                                 </form>
                                             </div>
                                             @endif
@@ -232,12 +182,12 @@
                                 @empty
                                     <div class="col-12 p-2 py-2">
                                         <div class="alert alert-danger col-12" role="alert">
-                                            <h4 class="alert-heading">No products found!</h4>
-                                            <p> There is no products in this category </p>
+                                            <h4 class="alert-heading">No se encontró ningún producto!</h4>
                                             <hr>
-                                            <p class="mb-0">Try typing the product name you are looking for on the
-                                                <strong>Search Input</strong> at top-right or try
-                                                looking for another category.</p>
+                                            <p class="mb-0">Puedes intentar escribir el nombre del producto que estás
+                                                buscando, en la caja de texto. <strong>Buscar producto</strong> ubicado
+                                                en la esquina superior derecha
+                                            </p>
                                         </div>
                                     </div>
                                 @endforelse
@@ -254,4 +204,17 @@
             </div>
         </div>
     </section>
+@endsection
+
+
+@section('scripts')
+    @if(session()->exists('message'))
+        <script>
+            Swal.fire({
+                icon: '{{ session()->get('status')  }}',
+                title: '{{ session()->get('message') }}',
+                timer: 3000
+            })
+        </script>
+    @endif
 @endsection

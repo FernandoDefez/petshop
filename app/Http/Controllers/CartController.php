@@ -18,16 +18,6 @@ class CartController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly product in the user cart.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -42,48 +32,21 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function view()
     {
-        //
-    }
+        if (auth()->user()) {
+            $user = User::find(auth()->user()->getAuthIdentifier());
+            $items = Product::select([
+                'carts.quantity',
+                'products.id',
+                'products.availability',
+            ])->join('carts', 'carts.product_id', '=', 'products.id')
+                ->where('carts.user_id', '=', $user->id)->get();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+            foreach ($items as $item){
+                Product::where('id', '=', $item->id)->decrement('availability', $item->quantity);
+            }
+        }
     }
 }

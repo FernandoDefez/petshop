@@ -1,10 +1,10 @@
 <section class="d-flex responsive-section-1 justify-content-between m-0 pt-4" style="width: 100%; height: 100%">
     <div class="col-md-8" style="height: 100%; margin-bottom: 35px">
-        <h5 class="m-0 p-0"> Cart </h5>
+        <h5 class="m-0 p-0"> Carrito </h5>
         <div class="rounded p-3 bg-white shadow-sm" style="margin-top: 2vh;">
             <div class="d-flex justify-content-between align-items-center mb-0">
-                <h6 class="py-1 m-0"> Shopping cart </h6>
-                <h6 class="py-1 m-0 d-flex"> Total items:
+                <h6 class="py-1 m-0"> Articulos en el carrito </h6>
+                <h6 class="py-1 m-0 d-flex"> Total de artículos:
                     <span class="font-weight-normal ml-2 text-secondary"> <livewire:cart-items-counter /> </span>
                 </h6>
             </div>
@@ -26,7 +26,7 @@
                                 </a>
                             </h5>
                             <div class="m-0 p-0">
-                                <p class="text-danger m-0 p-0" style="font-size: 10px"> There are {{ $item->availability }} available </p>
+                                <p class="text-danger m-0 p-0" style="font-size: 10px"> {{ $item->availability }} disponible(s) </p>
                             </div>
                         </div>
                         <div class="m-0 p-0 col-lg-1 col-3 d-flex">
@@ -60,42 +60,27 @@
                         </div>
                     </div>
                 @empty
-                    @guest
-                        <div class="m-0 p-0 d-flex justify-content-start align-items-start flex-wrap w-100">
-                            <div class="p-0 w-100 d-flex align-items-center justify-content-center" style="box-sizing: border-box">
-                                <a class="nav-link text-primary p-0 py-2 mx-2" href="{{ route('login')  }}">
-                                    Login
-                                </a>
-                                <p class="mx-1 mb-0"> or </p>
-                                <a class="nav-link text-secondary p-0 mx-2" href=" {{ route('register')  }} ">
-                                    Register
-                                </a>
-                            </div>
+                    <div class="m-0 p-0 d-flex justify-content-start align-items-start flex-wrap w-100">
+                        <div class="p-0 w-100 d-flex align-items-center flex-column justify-content-center" style="box-sizing: border-box">
+                            <p class="m-0 mb-3"> {{ __('No hay artículos en tu carrito de compras') }} </p>
+                            <a href="{{ route('home') }}" class="btn btn-dark font-weight-bold">Ver Productos</a>
                         </div>
-                        <br>
-                    @else
-                        <div class="m-0 p-0 d-flex justify-content-start align-items-start flex-wrap w-100">
-                            <div class="p-0 w-100 d-flex align-items-center justify-content-center" style="box-sizing: border-box">
-                                <p class="mx-1 mb-0"> {{ __('There is no items in your cart yet') }} </p>
-                            </div>
-                        </div>
-                        <br>
-                    @endguest
+                    </div>
+                    <br>
                 @endforelse
             </div>
         </div>
         <div class="col-12 d-flex justify-content-end p-0 m-0 mt-4">
-            <a href="{{ route('home') }}" class="text-decoration-none m-0 p-0">&leftarrow; Continue Shopping</a>
+            <a href="{{ route('home') }}" class="text-decoration-none m-0 p-0">&leftarrow; Seguir comprando</a>
         </div>
     </div>
     <div class="col-md-4" style="margin-bottom: 40px">
         <h5> &nbsp; </h5>
         <div class="rounded p-3 bg-white shadow-sm" style="margin-top: 2vh;">
-            <h6 class="py-1"> Cart summary </h6>
+            <h6 class="py-1"> Resumen de compra </h6>
             <hr>
             @if(!$subtotal == 0)
-                <form class="m-0 p-0" action="{{route('checkout')}}" method="POST">
-                    @csrf
+                <div class="m-0 p-0">
                     <div class="px-0 d-flex align-items-center justify-content-between mb-3 px-3 py-1">
                         <p class="m-0"> Subtotal </p>
                         <p class="m-0">
@@ -103,39 +88,24 @@
                         </p>
                     </div>
                     <div class="px-0 d-flex align-items-center justify-content-between mb-3 px-3 py-1">
-                        <p class="m-0"> Shipping cost </p>
-                        <p class="m-0"> {{ '$' . number_format($shippingCost, 2)   }} </p>
+                        <p class="m-0"> Costo de envío </p>
+                        <p class="m-0"> {{ '$' . number_format($shipping_cost, 2)   }} </p>
                     </div>
                     <div class="bg-light px-0 d-flex align-items-center justify-content-between mb-3 px-3 py-2 rounded font-weight-bold">
                         <p class="m-0"> Total </p>
                         <p class="m-0"> {{ '$' . number_format($total, 2) }} </p>
                     </div>
                     <div class="bg-light px-0 d-flex align-items-center justify-content-between mb-3">
-                        <input type="submit" class="btn btn-primary font-weight-bold btn-block" value="Checkout">
+                        <a href="{{route('checkout')}}" class="btn btn-primary font-weight-bold btn-block"> Checkout </a>
                     </div>
-                </form>
+                </div>
             @else
-                @guest
-                    <div class="m-0 p-0 d-flex justify-content-start align-items-start flex-wrap w-100">
-                        <div class="p-0 w-100 d-flex align-items-center justify-content-center" style="box-sizing: border-box">
-                            <a class="nav-link text-primary p-0 py-2 mx-2" href="{{ route('login')  }}">
-                                Login
-                            </a>
-                            <p class="mx-1 mb-0"> or </p>
-                            <a class="nav-link text-secondary p-0 mx-2" href=" {{ route('register')  }} ">
-                                Register
-                            </a>
-                        </div>
+                <div class="pt-2 w-100 mx-auto">
+                    <div class="p-0 w-100 d-flex align-items-center justify-content-center" style="box-sizing: border-box">
+                        <p class="m-0 mb-0"> {{ __('No hay artículos en tu carrito de compras') }} </p>
                     </div>
-                    <br>
-                @else
-                    <div class="pt-2 w-100 mx-auto">
-                        <div class="p-0 w-100 d-flex align-items-center justify-content-center" style="box-sizing: border-box">
-                            <p class="m-0 mb-0"> {{ __('There is no items in your cart yet') }} </p>
-                        </div>
-                    </div>
-                    <br>
-                @endguest
+                </div>
+                <br>
             @endif
         </div>
     </div>

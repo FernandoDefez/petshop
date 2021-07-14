@@ -1,12 +1,12 @@
 <div>
     <div class="dropdown">
         <div class="input-group">
-            <input type="search" class="form-control" placeholder="Search product" aria-label="Search" id="search-dropdown" style="width: 210px"
+            <input type="search" class="form-control" placeholder="Buscar producto" aria-label="Search" id="search-dropdown" style="width: 210px"
                 wire:model="query">
                 @if (!empty($query))
                     @if (!empty($products))
                         <div class="dropdown-menu dropdown-menu-lg-right shadow-sm" aria-labelledby="search-dropdown" style="display: block; min-width:100%">
-                            <h5 class="dropdown-header text-dark px-3">Search Results</h5>
+                            <h5 class="dropdown-header text-dark px-3 font-weight-bold">Resultados de la búsqueda</h5>
                             @foreach($products as $product)
                                 <div class="dropdown-item col-12 d-flex align-items-center px-1">
                                     <div class="col-4 p-0 m-auto" style="height: 80px; width: 110px">
@@ -23,7 +23,7 @@
                         </div>
                     @else
                     <div class="dropdown-menu dropdown-menu-lg-right" aria-labelledby="search-dropdown" style="display: block; min-width:100%">
-                        <h6 class="dropdown-header text-dark font-weight-bold">No Results</h6>
+                        <h6 class="dropdown-header text-dark font-weight-bold">No se encontró</h6>
                     </div>
                     @endif
                 @endif

@@ -68,10 +68,11 @@
 </nav>
 
 <main class="m-0 col-12 p-4">
+    @if (!Request::is('admin/login'))
     <section class="m-auto" style="width: 100%; height: 100%;">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" 
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 70px">
                     Create
                 </a>
@@ -83,6 +84,10 @@
             </li>
         </ul>
     </section>
+    @else
+
+    @endif
+
     @yield('content')
 </main>
 

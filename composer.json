@@ -13,6 +13,7 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.4",
+        "paypal/paypal-checkout-sdk": "1.0.1",
         "qirolab/laravel-themer": "^1.4"
     },
     "require-dev": {

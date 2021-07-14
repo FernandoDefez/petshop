@@ -27,14 +27,6 @@
             font-family: cursive;
         }
 
-        .title{
-            font-size: 24px;
-        }
-
-        .dark{
-            background: #212529 !important;
-        }
-
         @media (max-width: 768px) {
 
         }
@@ -64,16 +56,16 @@
     <main class="m-0 p-0 position-relative" style="width: 100vw; height: 100vh">
         <div class="header position-absolute bg-white shadow-sm col-12 px-4 py-3" style="display: none">
             <div class="mb-0 d-flex justify-content-between align-items-center">
-                <a class="text-white navbar-brand text-dark title" href="{{@url('/')}}">
-                    {{ __('Petshop') }}
+                <a class="navbar-brand text-dark font-weight-bold" style="color: #318eb8 !important;" href="{{@url('/')}}">
+                    {{ __('PETSHOP') }}
                 </a>
                 <div class="d-flex align-items-center">
                 @guest
                     @if (Route::has('login'))
-                            <a class="nav-link text-secondary" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link text-secondary" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
                     @endif
                     @if (Route::has('register'))
-                        <a class="nav-link text-secondary" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link text-secondary" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
 
                     @endif
                 @endguest
@@ -94,8 +86,11 @@
                                                 <img src="{{asset('storage/pets/'.$pet->img)}}"
                                                      alt="" style="width: 100%; height: 100vh; object-fit: cover; background-color:rgba(0,0,0,0.7); opacity: 0.90;">
                                             </div>
-                                            <div class="px-5 py-4 position-absolute" style="z-index: 10; top: 0; width: 100%;">
-                                                <h2 class="mb-0"><a class="text-white navbar-brand title" href="{{@url('/')}}">Petshop</a></h2>
+                                            <div class="position-absolute py-3 px-5" style="z-index: 10; top: 0; width: 100%;">
+                                                <a class="text-white navbar-brand font-weight-bold"
+                                                    href="{{ route('home') }}">
+                                                    {{__('PETSHOP')}}
+                                                </a>
                                             </div>
                                         </div>
                                     </li>
@@ -107,18 +102,18 @@
             </div>
 
             <div class="sign-in-card bg-light m-0" style="height: 100vh">
-                <div class="p-4 m-0">
+                <div class="pt-4 m-0">
                     <div class="p-0 py-5 m-auto" style="height: 100%;">
-                        <h6 class="px-5"> Hello, dear customer. It is good to have you here! </h6>
-                        <h5 class="px-5"> {{ __('Log In')}} </h5>
+                        <h6 class="px-5"> Hola, bienvenido. Inicia sesión para poder usar el carrito de compras</h6>
+                        <h5 class="px-5"> {{ __('Iniciar Sesión')}} </h5>
                         <div class="rounded my-0 p-0">
 
                             <form method="POST" action="{{ route('login') }}" class="m-0 row px-5 py-5">
                                 @csrf
                                 <div class="col-md-12 p-0 mb-4">
-                                    <label for="email" class="form-label">{{ __('E-Mail Address') }}</label>
+                                    <label for="email" class="form-label">{{ __('E-mail') }}</label>
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"
-                                        placeholder="E-mail Address" autocomplete="email" aria-describedby="validateEmail" required autofocus>
+                                        placeholder="E-mail" autocomplete="email" aria-describedby="validateEmail" required autofocus>
                                     @error('email')
                                     <span class="invalid-feedback pt-2 mb-0" role="alert">
                                         <p class="mb-0">{{ $message }}</p>
@@ -143,26 +138,27 @@
                                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                             <label class="form-check-label" for="remember">
-                                                {{ __('Remember Me') }}
+                                                {{ __('Recordarme') }}
                                             </label>
                                         </div>
                                     </div>
                                     <div class="col-md-8 text-right p-0">
                                         @if (Route::has('password.request'))
                                         <a class="btn btn-link p-1" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
+                                            {{ __('¿Olvidaste tu contraseña?') }}
                                         </a>
                                         @endif
                                     </div>
                                 </div>
                                 <br>
                                 <div class="col-md-12 p-0 mb-4">
-                                    <button class="fs-6 rounded p-2 btn btn-primary font-weight-bold btn-sm col-12" type="submit">{{ __('Log In') }}</button>
+                                    <button class="fs-6 rounded p-2 btn btn-primary font-weight-bold btn-sm col-12"
+                                            type="submit">{{ __('Iniciar Sesión') }}</button>
                                 </div>
                                 <br>
                                 <div class="col-12 p-0">
-                                    <p class="col-12 p-0 text-center m-0"> Don't have an account?
-                                        <a href="{{ route('register') }}" class="p-0">{{ __('Register') }}</a>
+                                    <p class="col-12 p-0 text-center m-0"> ¿No tienes una cuenta?
+                                        <a href="{{ route('register') }}" class="p-0">{{ __('Regístrarse') }}</a>
                                     </p>
                                 </div>
                             </form>

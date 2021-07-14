@@ -10,7 +10,7 @@ use App\Models\Product;
 class CartItems extends Component
 {
     public $subtotal = 0;
-    public $shippingCost = 6.00;
+    public $shipping_cost = 95.00;
     public $total = 0;
 
     public $items = [];
@@ -90,7 +90,7 @@ class CartItems extends Component
                 $this->subtotal = $this->subtotal + $item->total_price;
             }
 
-            return view('livewire.cart-items', compact($this->items, $this->subtotal, $this->total = $this->subtotal + $this->shippingCost));
+            return view('livewire.cart-items', compact($this->items, $this->subtotal, $this->total = $this->subtotal + $this->shipping_cost));
         }
         return view('livewire.cart-items', compact($this->items));
     }
